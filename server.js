@@ -36,8 +36,8 @@ const path = require('path')
 const PORT = process.env.PORT || 5000;
 const line = require("@line/bot-sdk"); 
 const config = {
-  TEST_ChannelAccessToken: process.env.TEST_ACCESS_TOKEN,
-  TEST_ChannelSecret: process.env.TEST_SECRET_KEY
+  channelAccessToken: process.env.TEST_ACCESS_TOKEN,
+  channelSecret: process.env.TEST_SECRET_KEY
 };
 
 express()
