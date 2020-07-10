@@ -2,8 +2,12 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000;
-const line = require("@line/bot-sdk"); 
-//const client = new line.Client(config);
+const line = require("@line/bot-sdk");
+var test_config = {
+  channelAccessToken: process.env.TEST_ACCESS_TOKEN,
+  channelSecret: process.env.TEST_SECRET_KEY
+}; 
+const client = new line.Client(test_config);
 
 express()
   .use(express.static(path.join(__dirname, "public")))
@@ -12,7 +16,7 @@ express()
   .get("/", (req, res) => res.render("pages/index"))
   .get("/g/", (req, res) => res.json({ method: "こんにちは、getさん" }))
   .post("/p/", (req, res) => res.json({ method: "こんにちは、postさん" }))
-  .post("/hook/", line.middleware(config), (req, res) => lineBot(req, res)) 
+  .post("/hook/", line.middleware(test_config), (req, res) => lineBot(req, res)) 
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   function lineBot(req, res) {
@@ -22,14 +26,10 @@ express()
     const promises = [];
    switch(req.body.destination){
      case "U9fbd92ef983647f16311a476520fc987"://test
-      var config = {
-        channelAccessToken: process.env.TEST_ACCESS_TOKEN,
-        channelSecret: process.env.TEST_SECRET_KEY
-      };
       var rikeibunkeiflug = 'test';
       break;
    }
-   var client = new line.Client(config);
+  
     for (let i = 0, l = events.length; i < l; i++) {
       const ev = events[i];
       console.log(`${i}番目のイベントの中身は`);
