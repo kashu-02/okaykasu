@@ -8,7 +8,7 @@ var test_config = {
   channelSecret: process.env.TEST_SECRET_KEY
 }; 
 const client = new line.Client(test_config);
-
+const reply = require('./reply');
 express()
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
@@ -52,20 +52,14 @@ express()
          // );
         case "message":
           promises.push(
-            echoman(ev,rikeibunkeiflug)
+            reply.replyline(ev,rikeibunkeiflug)
           );
       } 
     }
     Promise.all(promises).then(console.log("pass")); 
    }
    
-   async function echoman(ev,rikeibunkeiflug) {
-    const pro =  await client.getProfile(ev.source.userId); //awaitがあるので、この処理を待ってから次の行にいく。
-    return client.replyMessage(ev.replyToken, {
-      type: "text",
-      text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
-    })
-   }
+   
    
    async function greeting_follow(ev,rikeibunkeiflug) {
     const pro =  await client.getProfile(ev.source.userId);
