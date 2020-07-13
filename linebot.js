@@ -3,7 +3,6 @@ const test_config = {
   channelAccessToken: process.env.TEST_ACCESS_TOKEN,
   channelSecret: process.env.TEST_SECRET_KEY
 }; 
-const db = require('../db/index');
 const client = new line.Client(test_config);
 
 exports.linebot = function (req, res) {
