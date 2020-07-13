@@ -16,20 +16,16 @@ express()
   .get("/", (req, res) => res.render("pages/index"))
   .get("/g/", (req, res) => res.json({ method: "こんにちは、getさん" }))
   .post("/p/", (req, res) => res.json({ method: "こんにちは、postさん" }))
-  .post("/hook/", line.middleware(test_config), (req, res) => linebot(req, res)) 
+  .post("/hook/", line.middleware(test_config), (req, res) => lineBot(req, res)) 
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-  function linebot(req, res) {
+  function lineBot(req, res) {
     res.status(200).end(); //200番をレスポンスとして返しておく
     const events = req.body.events;
-    console.log(req.body.destination);
+    console.log(`linebot内のevents`)
+    console.log(events);  // console.log(`eventsは${events}、と${req.body.events}`); \\この書き方だと中身の配列が見えなかった。
     const promises = [];
-   switch(req.body.destination){
-     case "U9fbd92ef983647f16311a476520fc987"://test
-      var rikeibunkeiflug = 'test';
-      break;
-   }
-  
+   
     for (let i = 0, l = events.length; i < l; i++) {
       const ev = events[i];
       console.log(`${i}番目のイベントの中身は`);
@@ -38,48 +34,52 @@ express()
       console.log(ev.type);
    
       switch (ev.type) {
-        case "follow":
-          promises.push(
-            greeting_follow(ev,rikeibunkeiflug) 
+        case "join":
+          promises.push( //promisesにechoman(ev)の処理を配列として入れるメソッドぽい。
+            greeting_join(ev) //return の内容が、Promise のthenのコールバック関数に渡る.ここではpromise.push()
           );
    
-//case "unfollow":
-  //case"leave":
-
-  case "join":
-          //promises.push( //promisesにechoman(ev)の処理を配列として入れるメソッドぽい。
-            //greeting_join(ev,rikeibunkeiflug) //return の内容が、Promise のthenのコールバック関数に渡る.ここではpromise.push()
-         // );
-  case "message":
-         promises.push(async function replyline(ev,rikeibunkeiflug) {
-            const pro =  await client.getProfile(ev.source.userId); //awaitがあるので、この処理を待ってから次の行にいく。
-            return client.replyMessage(ev.replyToken, {
-            type: "text",
-            text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
-    })
-          });
+        case "follow":
+          promises.push(
+            greeting_follow(ev) 
+          );
+   
+        case "message":
+          promises.push(
+            echoman(ev)
+          );
       } 
     }
     Promise.all(promises).then(console.log("pass")); 
    }
    
+   async function echoman(ev) {
+    const pro =  await client.getProfile(ev.source.userId); //awaitがあるので、この処理を待ってから次の行にいく。
+    return client.replyMessage(ev.replyToken, {
+      type: "text",
+      text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
+    })
+   }
    
-   
-   async function greeting_follow(ev,rikeibunkeiflug) {
+   async function greeting_follow(ev) {
     const pro =  await client.getProfile(ev.source.userId);
-    switch(rikeibunkeiflug){
-      case "test":
-        var bottype = "テスト"
-    }
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
-      text: `${pro.displayName}さん。友だち追加ありがとうございます。/n${bottype}は日々の連絡事項や課題を配信するbotです。`
+      text: `${pro.displayName}さん、こんにちは。調整くんです。\\n${pro.displayName}さんの代わりに、ぼくがスケジュール調整をするよ。`
       },
+      {
+        type: "text",
+        text: `このリンクから依頼してね。`
+      },  
+      {
+        type: "text",
+        text: "https://scheduler-linebot.herokuapp.com/"
+      }
     ])
    }
    
-   async function greeting_join(ev,rikeibunkeiflug) {
+   async function greeting_join(ev) {
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
@@ -95,4 +95,3 @@ express()
       }
     ])
    }
- 
