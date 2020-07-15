@@ -1,3 +1,4 @@
+'use strict';
 const line = require("@line/bot-sdk");
 const test_config = {
     channelAccessToken: process.env.TEST_ACCESS_TOKEN,
