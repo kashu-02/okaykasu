@@ -4,7 +4,7 @@ const ChunkRangeDB = require('./ChunkRange.js');
 exports.GetChunkRange = function (req, res) {
   res.status(200).end(); //200番をレスポンスとして返しておく
   ChunkRangeDB.findAll({ limit: 1 }).then((chunkrange) => {
-    const chunkdate = new Date.parse(chunkrange.date);
+    const chunkdate = new Date(chunkrange.date);
     const chunkyear = chunkdate.getFullYear();
     const chunkday = chunkdate.getDate();
     const chunkmonth = chunkdate.getMonth() + 1;
