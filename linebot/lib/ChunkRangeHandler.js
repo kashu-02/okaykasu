@@ -1,5 +1,5 @@
 'use strict';
-const ChunkRangeDB = require('./ChunkRange.js');
+const ChunkRangeDB = require('./ChunkRangeDB.js');
 
 exports.GetChunkRange = function (req, res) {
   ChunkRangeDB.findAll({ limit: 1 }).then((chunkrange) => {
