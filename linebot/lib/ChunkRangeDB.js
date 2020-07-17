@@ -6,7 +6,7 @@ const sequelize = new Sequelize(
     logging: true,
     operatorsAliases: false 
   });
-const ChunkRangeDB = sequelize.define('chunk_range', {
+const ChunkRangeDB = sequelize.define('chunk_ranges', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
