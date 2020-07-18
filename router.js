@@ -9,17 +9,17 @@ const test_config = {
 }; 
 const client = new line.Client(test_config);
 const lineBot = require('./linebot/linebot.js');
-const ChunkRange = require('./linebot/lib/ChunkRangeHandler.js');
+const ChunkRange = require('../routes/v1/lib/ChunkRangeHandler.js');
 
+const router = require('./routes/v1/');
 
 express()
   .use(express.static(path.join(__dirname, "public")))
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/", (req, res) => res.render("pages/index"))
+  .use('/api/v1/', router)
   .get("/g/", (req, res) => res.json({ method: "こんにちは、getさん" }))
   .post("/p/", (req, res) => res.json({ method: "こんにちは、postさん" }))
-  .get("/GetChunkRange/", (req, res) => res.json(JSON.stringify(ChunkRange.GetChunkRange())))
-  //.post("/POSTChunkRange/",(req,res) => )
   .post("/hook/", line.middleware(test_config), (req, res) => lineBot.lineBot(req, res))
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
