@@ -9,7 +9,7 @@ const test_config = {
 }; 
 const client = new line.Client(test_config);
 const lineBot = require('./linebot/linebot.js');
-const ChunkRange = require('../routes/v1/lib/ChunkRangeHandler.js');
+const ChunkRange = require('./routes/v1/lib/ChunkRangeHandler.js');
 
 const router = require('./routes/v1/');
 
