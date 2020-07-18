@@ -1,22 +1,25 @@
 'use strict';
 const ChunkRangeDB = require('./ChunkRangeDB.js');
 
-exports.GetChunkRange = function (req, res) {
+exports.GetChunkRange = function () {
   ChunkRangeDB.findAll({ limit: 1 }).then((chunkrange) => {
     const chunkdate = new Date(chunkrange.date);
     const chunkyear = chunkdate.getFullYear();
     const chunkday = chunkdate.getDate();
     const chunkmonth = chunkdate.getMonth() + 1;
     const chunkweek = [ "日", "月", "火", "水", "木", "金", "土" ][chunkdate.getDay()] ;
-    res.end(JSON.stringify({
-      'year': chunkyear,
-      'month': chunkmonth,
-      'date': chunkday,
-      'day': chunkweek,
-      'range':chunkrange.chunkrange
-    }));
+    return({
+      year: chunkyear,
+      month: chunkmonth,
+      date: chunkday,
+      day: chunkweek,
+      range:chunkrange.chunkrange
+    });
   });
- 
+}
+
+exports.POSTChunkRange = function(req,res){
+
 }
 /* 
     case 'POST':
