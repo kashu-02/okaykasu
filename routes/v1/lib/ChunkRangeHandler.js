@@ -4,7 +4,7 @@ const express = require('express');
 const router    = express.Router();
 
 router.get('/',function(req,res){
-  ChunkRangeDB.findAll({ limit: 1 }).then((chunkrange) => {
+  ChunkRangeDB.findAll({ limit: 1 }).then(chunkrange => {
     console.log(`chunkrange:${chunkrange}`)
     const chunkdate = new Date(chunkrange.date);
     const chunkyear = chunkdate.getFullYear();
