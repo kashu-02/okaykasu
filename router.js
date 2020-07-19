@@ -13,14 +13,14 @@ const router = require('./routes/v1/');
 var bodyParser = require('body-parser');
 
 express()
+  .post("/hook/", line.middleware(test_config), (req, res) => lineBot.lineBot(req, res))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .use(express.static(path.join(__dirname, "public")))
+  .use('/api/v1/', router)
   .set("views", path.join(__dirname, "views"))
   .set("view engine", "ejs")
   .get("/", (req, res) => res.render("pages/index"))
-  .use('/api/v1/', router)
   .get("/g/", (req, res) => res.json({ method: "こんにちは、getさん" }))
-  .post("/p/", (req, res) => res.json({ method: "こんにちは、postさん" }))
-  .post("/hook/", line.middleware(test_config), (req, res) => lineBot.lineBot(req, res))
+  .post("/p/", (req, res) => res.json({ method: "こんにちは、postさん" })) 
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
