@@ -5,9 +5,8 @@ const router    = express.Router();
 
 router.get('/',function(req,res){
   ChunkRangeDB.findAll({ limit: 1 }).then(chunkrange => {
-    console.log(`chunkrange:${chunkrange}`);
-    /*
-    const chunkdate = new Date(chunkrange.date);
+    console.log(`chunkrange:${chunkrange[0]}`);
+    const chunkdate = new Date(chunkrange[0].date);
     const chunkyear = chunkdate.getFullYear();
     const chunkday = chunkdate.getDate();
     const chunkmonth = chunkdate.getMonth() + 1;
@@ -18,9 +17,9 @@ router.get('/',function(req,res){
       month: chunkmonth,
       date: chunkday,
       day: chunkweek,
-      range:chunkrange.chunkrange
-    }));*/
-    res.json(JSON.stringify(chunkrange));
+      range:chunkrange[0].chunkrange
+    }));
+    //res.json(JSON.stringify(chunk));
   });
 });
 
