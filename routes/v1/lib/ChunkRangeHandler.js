@@ -1,37 +1,61 @@
 'use strict';
 const ChunkRangeDB = require('./ChunkRangeDB.js');
 const express = require('express');
-const router    = express.Router();
+const router = express.Router();
 
-router.get('/',function(req,res){
-  ChunkRangeDB.findAll({ limit: 1 }).then(chunkrange => {
-    console.log(`chunkrange:${chunkrange[0]}`);
-    const chunkdate = new Date(chunkrange[0].date);
-    const chunkyear = chunkdate.getFullYear();
-    const chunkday = chunkdate.getDate();
-    const chunkmonth = chunkdate.getMonth() + 1;
-    const chunkweek = [ "日", "月", "火", "水", "木", "金", "土" ][chunkdate.getDay()] ;
-    
-    res.json(JSON.stringify({
-      year: chunkyear,
-      month: chunkmonth,
-      date: chunkday,
-      day: chunkweek,
-      range:chunkrange[0].chunkrange
-    }));
-    //res.json(JSON.stringify(chunk));
-  });
-});
-
-
+/**
+ * CREATE
+ */
 router.post('/',function(req,res){
   console.log(req.body);
 ChunkRangeDB.create({
   date:req.body.Date,
   chunkrange:req.body.Range
 }).then(() => {
-  res.status(200).end();
+  ChunkRangeDB.findAll({
+    attributes: ['date', 'chunkrange']
+  }).then(chunkrange => {
+  res.json(JSON.stringify(chunkrange));
+  });
 });
 });
 
+/**
+ * READ
+ */
+router.get('/',function(req,res){
+  ChunkRangeDB.findAll({ limit: 1 }).then(chunkrange => {
+    console.log(`chunkrange:${chunkrange[0]}`); 
+    ChunkRangeDB.findAll({
+      attributes: ['date', 'chunkrange']
+    }).then(chunkrange => {
+    res.json(JSON.stringify(chunkrange));
+    });
+  });
+});
+
+/**
+ * UPDATE
+ */
+router.put('/',function(req,res){
+  console.log(req.body);
+  ChunkRangeDB.update({
+    chunkrange:req.body.Range
+  },
+  { 
+    where: {
+      date:req.body.Date
+    }
+  }).then(() => {
+    ChunkRangeDB.findAll({
+      attributes: ['date', 'chunkrange']
+    }).then(chunkrange => {
+    res.json(JSON.stringify(chunkrange));
+    });
+  });
+});
+
+/**
+ * DELETE
+ */
 module.exports = router;
