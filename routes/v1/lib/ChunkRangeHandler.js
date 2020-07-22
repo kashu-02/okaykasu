@@ -58,4 +58,18 @@ router.put('/',function(req,res){
 /**
  * DELETE
  */
+router.delete('/',function(req,res){
+  ChunkRangeDB.destroy({
+    where: {
+      date:req.body.Date
+    }
+  }).then(() => {
+    ChunkRangeDB.findAll({
+      attributes: ['date', 'chunkrange']
+    }).then(chunkrange => {
+    res.json(JSON.stringify(chunkrange));
+    });
+  });
+});
+
 module.exports = router;
