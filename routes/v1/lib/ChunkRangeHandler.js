@@ -13,7 +13,10 @@ ChunkRangeDB.create({
   chunkrange:req.body.Range
 }).then(() => {
   ChunkRangeDB.findAll({
-    attributes: ['date', 'chunkrange']
+    attributes: ['date', 'chunkrange'],
+    order: [
+      ['date', 'ASC']
+    ]
   }).then(chunkrange => {
   res.json(JSON.stringify(chunkrange));
   });
@@ -27,7 +30,10 @@ router.get('/',function(req,res){
   ChunkRangeDB.findAll({ limit: 1 }).then(chunkrange => {
     console.log(`chunkrange:${chunkrange[0]}`); 
     ChunkRangeDB.findAll({
-      attributes: ['date', 'chunkrange']
+      attributes: ['date', 'chunkrange'],
+      order: [
+        ['date', 'ASC']
+      ]
     }).then(chunkrange => {
     res.json(JSON.stringify(chunkrange));
     });
@@ -48,7 +54,10 @@ router.put('/',function(req,res){
     }
   }).then(() => {
     ChunkRangeDB.findAll({
-      attributes: ['date', 'chunkrange']
+      attributes: ['date', 'chunkrange'],
+      order: [
+        ['date', 'ASC']
+      ]
     }).then(chunkrange => {
     res.json(JSON.stringify(chunkrange));
     });
@@ -65,7 +74,10 @@ router.delete('/',function(req,res){
     }
   }).then(() => {
     ChunkRangeDB.findAll({
-      attributes: ['date', 'chunkrange']
+      attributes: ['date', 'chunkrange'],
+      order: [
+        ['date', 'ASC']
+      ]
     }).then(chunkrange => {
     res.json(JSON.stringify(chunkrange));
     });

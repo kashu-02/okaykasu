@@ -13,7 +13,10 @@ NextStageRangeDB.create({
   nextstagerange:req.body.Range
 }).then(() => {
   NextStageRangeDB.findAll({
-    attributes: ['date', 'nextstagerange']
+    attributes: ['date', 'nextstagerange'],
+    order: [
+        ['date', 'ASC']
+      ]
   }).then(nextstagerange => {
   res.json(JSON.stringify(nextstagerange));
   });
@@ -27,7 +30,10 @@ router.get('/',function(req,res){
   NextStageRangeDB.findAll({ limit: 1 }).then(nextstagerange => {
     console.log(`nextstagerange:${nextstagerange[0]}`); 
     NextStageRangeDB.findAll({
-      attributes: ['date', 'nextstagerange']
+      attributes: ['date', 'nextstagerange'],
+      order: [
+        ['date', 'ASC']
+      ]
     }).then(nextstagerange => {
     res.json(JSON.stringify(nextstagerange));
     });
@@ -48,7 +54,10 @@ router.put('/',function(req,res){
     }
   }).then(() => {
     NextStageRangeDB.findAll({
-      attributes: ['date', 'nextstagerange']
+      attributes: ['date', 'nextstagerange'],
+      order: [
+        ['date', 'ASC']
+      ]
     }).then(nextstagerange => {
     res.json(JSON.stringify(nextstagerange));
     });
@@ -65,7 +74,10 @@ router.delete('/',function(req,res){
     }
   }).then(() => {
     NextStageRangeDB.findAll({
-      attributes: ['date', 'nextstagerange']
+      attributes: ['date', 'nextstagerange'],
+      order: [
+        ['date', 'ASC']
+      ]
     }).then(nextstagerange => {
     res.json(JSON.stringify(nextstagerange));
     });
