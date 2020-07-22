@@ -20,4 +20,4 @@ const NextStageRangeDB = sequelize.define('nextstage_ranges', {
   }});
 
 NextStageRangeDB.sync();
-module.exports = NextStageDB;
+module.exports = NextStageRangeDB;
