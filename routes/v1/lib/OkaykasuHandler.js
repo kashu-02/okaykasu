@@ -46,7 +46,7 @@ router.put('/',function(req,res){
   },
   { 
     where: {
-      Id:req.body.Id
+      id:req.body.Id
     }
   }).then(() => {
     OkaykasuDB.findAll({
@@ -66,7 +66,7 @@ router.put('/',function(req,res){
 router.delete('/',function(req,res){
   OkaykasuDB.destroy({
     where: {
-      Id:req.body.Id
+      id:req.body.Id
     }
   }).then(() => {
     OkaykasuDB.findAll({
