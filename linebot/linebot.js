@@ -23,14 +23,20 @@ exports.lineBot = function (req, res) {
       switch (ev.type) {
         case "join":
           promises.push( //promisesにechoman(ev)の処理を配列として入れるメソッドぽい。
-            greeting_join(ev) //return の内容が、Promise のthenのコールバック関数に渡る.ここではpromise.push()
+            join(ev) //return の内容が、Promise のthenのコールバック関数に渡る.ここではpromise.push()
           );
-   
+        case "leave":
+          promises.push(
+            leave(ev) 
+          );
         case "follow":
           promises.push(
-            greeting_follow(ev) 
+            follow(ev) 
           );
-   
+        case "unfollow":
+          promises.push(
+            unfollow(ev) 
+          );
         case "message":
           promises.push(
             replyline(ev)
@@ -56,7 +62,7 @@ exports.lineBot = function (req, res) {
     })
    }
    
-   async function greeting_follow(ev) {
+   async function follow(ev) {
     const pro =  await client.getProfile(ev.source.userId);
     return client.replyMessage(ev.replyToken, [
       {
@@ -74,7 +80,7 @@ exports.lineBot = function (req, res) {
     ])
    }
    
-   async function greeting_join(ev) {
+   async function join(ev) {
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
