@@ -24,8 +24,8 @@ LineBotDB.create({
  * READ
  */
 router.get('/:source_type/:UserorGroupId',function(req,res){
-  const source_type = req.param.source_type;
-  const UserorGroupId = req.param.UserorGroupId;
+  const source_type = req.params.source_type;
+  const UserorGroupId = req.params.UserorGroupId;
   console.log(`source_type: ${source_type}`);
   console.log(`UserorGroupId: ${UserorGroupId}`);
   if(!source_type || !UserorGroupId){
