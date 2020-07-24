@@ -1,6 +1,6 @@
 'use strict';
 const line = require("@line/bot-sdk");
-const LineBotDB = require('../routes/v1/lib/LineBotDBHandler')
+const LineBotDB = require('../routes/v1/lib/LineBotDBHandler.js');
 const test_config = {
     channelAccessToken: process.env.TEST_ACCESS_TOKEN,
     channelSecret: process.env.TEST_SECRET_KEY
@@ -10,7 +10,7 @@ const test_config = {
 exports.lineBot = function (req, res) {
     res.status(200).end(); //200番をレスポンスとして返しておく
     const events = req.body.events;
-    console.log(`linebot内のevents`)
+    console.log(`linebot内のevents`);
     console.log(events);  // console.log(`eventsは${events}、と${req.body.events}`); \\この書き方だと中身の配列が見えなかった。
     const promises = [];
    
