@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
     dialectOptions: {
       useUTC: false,
     },
-    timezone: 'Asia/Tokyo'
+    timezone: '+09:00'
   });
 const NextStageRangeDB = sequelize.define('nextstage_ranges', {
   id: {
