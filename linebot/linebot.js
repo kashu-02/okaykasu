@@ -52,8 +52,10 @@ exports.lineBot = function (req, res) {
     const pro =  await client.getProfile(ev.source.userId);
     switch(ev.message.text){
       case "おk粕":
+
       break;
       case "チャンク":
+        
       break;
       case "ネクステ":
       break;

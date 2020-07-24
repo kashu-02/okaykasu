@@ -27,6 +27,30 @@ ChunkRangeDB.create({
  * READ
  */
 router.get('/',function(req,res){
+  if(req.params.latestchunk){
+    ChunkRangeDB.findAndCountAll({
+      attributes: ['date', 'chunkrange'],
+      order: [
+        ['date', 'ASC']
+      ],
+      offset: 1,
+      limit: 1
+    }).then(chunkrange => {
+      res.json(chunkrange.rows);
+    });
+  }else if(req.params.chunkdate){
+    ChunkRangeDB.findAll({
+      attributes: ['date', 'chunkrange'],
+      order: [
+        ['date', 'ASC']
+      ],
+      where:{
+        date: req.params.chunkdate
+      }
+    }).then(chunkrange => {
+    res.json(chunkrange);
+    });
+  }else{
     ChunkRangeDB.findAll({
       attributes: ['date', 'chunkrange'],
       order: [
@@ -35,6 +59,8 @@ router.get('/',function(req,res){
     }).then(chunkrange => {
     res.json(chunkrange);
     });
+  }
+    
 });
 
 /**
