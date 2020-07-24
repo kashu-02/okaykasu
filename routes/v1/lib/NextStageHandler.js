@@ -11,6 +11,9 @@ moment.tz.setDefault('Asia/Tokyo');
 router.post('/',function(req,res){
   console.log(req.body);
   const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
+  if(!req.body.Range || !nextstagedate || nextstagedate === 'Invalid date'){
+    res.status(400).json({ error: 'Invalid request body' });
+  }
 NextStageRangeDB.create({
   date:nextstagedate,
   nextstagerange:req.body.Range
@@ -72,6 +75,9 @@ router.get('/',function(req,res){
 router.put('/',function(req,res){
   console.log(req.body);
   const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
+  if(!req.body.Range || !nextstagedate || nextstagedate === 'Invalid date'){
+    res.status(400).json({ error: 'Invalid request body' });
+  }
   NextStageRangeDB.update({
     nextstagerange:req.body.Range
   },
@@ -96,6 +102,9 @@ router.put('/',function(req,res){
  */
 router.delete('/',function(req,res){
     const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
+    if(!req.body.Range || !nextstagedate || nextstagedate === 'Invalid date'){
+        res.status(400).json({ error: 'Invalid request body' });
+      }
   NextStageRangeDB.destroy({
     where: {
       date:nextstagedate

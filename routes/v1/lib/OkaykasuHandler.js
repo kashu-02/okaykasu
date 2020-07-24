@@ -8,6 +8,9 @@ const router = express.Router();
  */
 router.post('/',function(req,res){
   console.log(req.body);
+  if(!req.body.Content){
+    res.status(400).json({ error: 'Invalid request body' });
+  }
 OkaykasuDB.create({
   okaykasu:req.body.Content
 }).then(() => {
@@ -41,6 +44,9 @@ router.get('/',function(req,res){
  */
 router.put('/',function(req,res){
   console.log(req.body);
+  if(!req.body.Content || !req.body.Id){
+    res.status(400).json({ error: 'Invalid request body' });
+  }
   OkaykasuDB.update({
     okaykasu:req.body.Content
   },
@@ -64,6 +70,9 @@ router.put('/',function(req,res){
  * DELETE
  */
 router.delete('/',function(req,res){
+    if(!req.body.Id){
+        res.status(400).json({ error: 'Invalid request body' });
+      }
   OkaykasuDB.destroy({
     where: {
       id:req.body.Id
