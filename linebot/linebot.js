@@ -1,5 +1,6 @@
 'use strict';
 const line = require("@line/bot-sdk");
+const LineBotDB = require('../routes/v1/lib/LineBotDBHandler')
 const test_config = {
     channelAccessToken: process.env.TEST_ACCESS_TOKEN,
     channelSecret: process.env.TEST_SECRET_KEY
@@ -19,7 +20,7 @@ exports.lineBot = function (req, res) {
       console.log(events[i]);
       console.log(`ev.typeは`);
       console.log(ev.type);
-   
+      LineBotDB.linebotcreate(ev);//DB書き込み
       switch (ev.type) {
         case "join":
           promises.push( //promisesにechoman(ev)の処理を配列として入れるメソッドぽい。

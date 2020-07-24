@@ -27,8 +27,6 @@ NextStageRangeDB.create({
  * READ
  */
 router.get('/',function(req,res){
-  NextStageRangeDB.findAll({ limit: 1 }).then(nextstagerange => {
-    console.log(`nextstagerange:${nextstagerange[0]}`); 
     NextStageRangeDB.findAll({
       attributes: ['date', 'nextstagerange'],
       order: [
@@ -37,7 +35,6 @@ router.get('/',function(req,res){
     }).then(nextstagerange => {
     res.json(JSON.stringify(nextstagerange));
     });
-  });
 });
 
 /**
