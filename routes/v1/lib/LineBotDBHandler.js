@@ -2,6 +2,7 @@
 const LineBotDB = require('./LineBotDB.js');
 const express = require('express');
 const router = express.Router();
+const Op = Sequelize.Op;
 
 /**
  * CREATE
