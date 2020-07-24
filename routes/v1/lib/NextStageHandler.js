@@ -13,7 +13,7 @@ router.post('/',function(req,res){
   const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
   if(!req.body.Range || !nextstagedate || nextstagedate === 'Invalid date'){
     res.status(400).json({ error: 'Invalid request body' });
-    break;
+    return false;
   }
 NextStageRangeDB.create({
   date:nextstagedate,
@@ -78,7 +78,7 @@ router.put('/',function(req,res){
   const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
   if(!req.body.Range || !nextstagedate || nextstagedate === 'Invalid date'){
     res.status(400).json({ error: 'Invalid request body' });
-    break;
+    return false;
   }
   NextStageRangeDB.update({
     nextstagerange:req.body.Range
@@ -106,7 +106,7 @@ router.delete('/',function(req,res){
     const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
     if(!req.body.Range || !nextstagedate || nextstagedate === 'Invalid date'){
         res.status(400).json({ error: 'Invalid request body' });
-        break;
+        return false;
       }
   NextStageRangeDB.destroy({
     where: {

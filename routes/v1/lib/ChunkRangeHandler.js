@@ -14,7 +14,7 @@ router.post('/',function(req,res){
   const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
 if(!req.body.Range || !chunkdate || chunkdate === 'Invalid date'){
   res.status(400).json({ error: 'Invalid request body' });
-  break;
+  return false;
 }
 ChunkRangeDB.create({
   date:chunkdate,
@@ -79,7 +79,7 @@ router.put('/',function(req,res){
   console.log(req.body);
   if(!req.body.Range || !chunkdate || chunkdate === 'Invalid date'){
     res.status(400).json({ error: 'Invalid request body' });
-    break;
+    return false;
   }
   const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
   ChunkRangeDB.update({
@@ -108,7 +108,7 @@ router.delete('/',function(req,res){
   const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
   if(!chunkdate || chunkdate === 'Invalid date'){
     res.status(400).json({ error: 'Invalid request body' });
-    break;
+    return false;
   }
   ChunkRangeDB.destroy({
     where: {
