@@ -5,6 +5,9 @@ const sequelize = new Sequelize(
   {
     logging: true,
     operatorsAliases: false,
+    dialectOptions: {
+        useUTC: false,
+      },
     timezone: 'Asia/Tokyo'
   });
 const OkaykasuDB = sequelize.define('okaykasudata', {
