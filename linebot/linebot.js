@@ -111,6 +111,7 @@ exports.lineBot = function (req, res) {
           offset: 1,
           limit: 1
         }).then(nextstagerange => {
+          console.log("NextStageRange" + JSON.stringify(nextstagerange));
           const nextstageday = new Date(nextstagerange.rows[0].date);
           const nextstagedate = nextstageday.getDate();
           const nextstageWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][nextstageday.getDay()];
