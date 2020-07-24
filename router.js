@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express')
 const path = require('path')
+const helmet = require('helmet');
 const PORT = process.env.PORT || 5000;
 const line = require("@line/bot-sdk");
 const test_config = {
@@ -13,6 +14,7 @@ const router = require('./routes/v1/');
 var bodyParser = require('body-parser');
 
 express()
+  .use(helmet())
   .post("/hook/", line.middleware(test_config), (req, res) => lineBot.lineBot(req, res))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
