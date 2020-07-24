@@ -10,6 +10,7 @@ router.post('/',function(req,res){
   console.log(req.body);
   if(!req.body.Content){
     res.status(400).json({ error: 'Invalid request body' });
+    break;
   }
 OkaykasuDB.create({
   okaykasu:req.body.Content
@@ -46,6 +47,7 @@ router.put('/',function(req,res){
   console.log(req.body);
   if(!req.body.Content || !req.body.Id){
     res.status(400).json({ error: 'Invalid request body' });
+    break;
   }
   OkaykasuDB.update({
     okaykasu:req.body.Content
@@ -72,6 +74,7 @@ router.put('/',function(req,res){
 router.delete('/',function(req,res){
     if(!req.body.Id){
         res.status(400).json({ error: 'Invalid request body' });
+        break;
       }
   OkaykasuDB.destroy({
     where: {
