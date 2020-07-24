@@ -51,7 +51,7 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
     ).then(userresult => {
       const res_json = {
         page: page,
-        line: userresult
+        line: userresult.rows
       }
       res.json(JSON.stringify(res_json));
     });
@@ -68,7 +68,7 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
     ).then(groupresult => {
       const res_json = {
         page: page,
-        line: groupresult
+        line: groupresult.rows
       }
       res.json(JSON.stringify(res_json));
     });
