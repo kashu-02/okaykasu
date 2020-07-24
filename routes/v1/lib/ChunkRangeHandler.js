@@ -27,7 +27,6 @@ ChunkRangeDB.create({
  * READ
  */
 router.get('/',function(req,res){
-    console.log(`chunkrange:${chunkrange[0]}`); 
     ChunkRangeDB.findAll({
       attributes: ['date', 'chunkrange'],
       order: [
