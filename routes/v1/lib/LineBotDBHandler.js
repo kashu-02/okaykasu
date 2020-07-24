@@ -25,7 +25,12 @@ LineBotDB.create({
 /**
  * READ
  */
-router.get('/:source_type/:UserorGroupId',function(req,res){
+router.get('/:bot_destination/:source_type/:UserorGroupId',function(req,res){
+  switch(req.params.bot_destination){
+    case "test":
+      var bot_destination = "U0f16903d7c2436ebb99c2459124fd40d";
+    break;
+  }
   const source_type = req.params.source_type;
   const UserorGroupId = req.params.UserorGroupId;
   console.log(`source_type: ${source_type}`);
@@ -39,6 +44,7 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
     LineBotDB.findAndCountAll({
       where: {
         [Op.and]: [
+          {bot_destination: bot_destination},
           {source_userId: UserorGroupId},
           {source_groupId: null}
         ]
@@ -55,7 +61,10 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
   } else if(source_type === "group" || source_type === "room"){
     LineBotDB.findAndCountAll({
       where: {
-        source_groupId: UserorGroupId
+        [Op.and]: [
+        {bot_destination: bot_destination},
+        {source_groupId: UserorGroupId}
+        ]
       },
       offset: (page - 1) * perPage,
       limit: perPage
