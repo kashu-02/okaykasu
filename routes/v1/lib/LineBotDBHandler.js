@@ -42,10 +42,10 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
     },
     {
       where: {
-      [Op.and]: {
-        source_userId: UserorGroupId,
-        source_groupId: null
-      }
+      [Op.and]: [
+        {source_userId: UserorGroupId},
+        {source_groupId: null}
+      ]
       }
     }
     ).then(userresult => {
