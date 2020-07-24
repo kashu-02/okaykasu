@@ -27,8 +27,8 @@ ChunkRangeDB.create({
  * READ
  */
 router.get('/',function(req,res){
-  console.log(`latestchunk ${req.params.latestchunk}`);
-  if(req.params.latestchunk){
+  console.log(`latestchunk ${req.query.latestchunk}`);
+  if(req.query.latestchunk){
     ChunkRangeDB.findAndCountAll({
       attributes: ['date', 'chunkrange'],
       order: [
@@ -39,14 +39,14 @@ router.get('/',function(req,res){
     }).then(chunkrange => {
       res.json(chunkrange.rows);
     });
-  }else if(req.params.chunkdate){
+  }else if(req.query.chunkdate){
     ChunkRangeDB.findAll({
       attributes: ['date', 'chunkrange'],
       order: [
         ['date', 'ASC']
       ],
       where:{
-        date: req.params.chunkdate
+        date: req.query.chunkdate
       }
     }).then(chunkrange => {
     res.json(chunkrange);
