@@ -37,7 +37,7 @@ router.get('/',function(req,res){
         offset: 1,
         limit: 1
       }).then(nextstagerange => {
-        res.json(nextstagerange.rows);
+        res.json(nextstagerange.rows[0]);
       });
     }else if(req.query.chunkdate){
       NextStageRangeDB.findAll({

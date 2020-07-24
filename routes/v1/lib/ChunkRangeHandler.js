@@ -37,7 +37,7 @@ router.get('/',function(req,res){
       offset: 1,
       limit: 1
     }).then(chunkrange => {
-      res.json(chunkrange.rows);
+      res.json(chunkrange.rows[0]);
     });
   }else if(req.query.chunkdate){
     ChunkRangeDB.findAll({

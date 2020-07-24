@@ -65,11 +65,11 @@ exports.lineBot = function (req, res) {
           offset: 1,
           limit: 1
         }).then(chunkrange => {
-          const chunkday = new Date(chunkrange.rows['date']);
+          const chunkday = new Date(chunkrange.rows[0].date);
           const chunkdate = chunkday.getDate();
           const chunkWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][chunkday.getDay()];
           console.log("chunkrange" + JSON.stringify(chunkrange))
-          console.log(`chunkday&range${chunkdate + "(" + chunkWeekStr + ")"}${chunkrange.rows['chunkrange']}`)
+          console.log(`chunkday&range${chunkdate + "(" + chunkWeekStr + ")"}${chunkrange.rows[0].chunkrange}`)
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
@@ -94,7 +94,7 @@ exports.lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: chunkrange.rows.chunkrange
+                    text: chunkrange.rows[0].chunkrange
                   }
                 ]
               }
