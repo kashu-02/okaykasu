@@ -11,7 +11,7 @@ const router = express.Router();
  */
 router.post('/',function(req,res){
   console.log(req.body);
-  const chunkdate = moment(req.body.Date).format(YYYY-MM-DD);
+  const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
 
 ChunkRangeDB.create({
   date:chunkdate,
@@ -74,7 +74,7 @@ router.get('/',function(req,res){
  */
 router.put('/',function(req,res){
   console.log(req.body);
-  const chunkdate = moment(req.body.Date).format(YYYY-MM-DD);
+  const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
   ChunkRangeDB.update({
     chunkrange:req.body.Range
   },
@@ -98,7 +98,7 @@ router.put('/',function(req,res){
  * DELETE
  */
 router.delete('/',function(req,res){
-  const chunkdate = moment(req.body.Date).format(YYYY-MM-DD);
+  const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
   ChunkRangeDB.destroy({
     where: {
       date:chunkdate

@@ -10,7 +10,7 @@ moment.tz.setDefault('Asia/Tokyo');
  */
 router.post('/',function(req,res){
   console.log(req.body);
-  const nextstagedate = moment(req.body.Date).format(YYYY-MM-DD);
+  const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
 NextStageRangeDB.create({
   date:nextstagedate,
   nextstagerange:req.body.Range
@@ -71,7 +71,7 @@ router.get('/',function(req,res){
  */
 router.put('/',function(req,res){
   console.log(req.body);
-  const nextstagedate = moment(req.body.Date).format(YYYY-MM-DD);
+  const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
   NextStageRangeDB.update({
     nextstagerange:req.body.Range
   },
@@ -95,7 +95,7 @@ router.put('/',function(req,res){
  * DELETE
  */
 router.delete('/',function(req,res){
-    const nextstagedate = moment(req.body.Date).format(YYYY-MM-DD);
+    const nextstagedate = moment(req.body.Date).format('YYYY-MM-DD');
   NextStageRangeDB.destroy({
     where: {
       date:nextstagedate
