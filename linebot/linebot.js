@@ -1,8 +1,8 @@
 'use strict';
 const line = require("@line/bot-sdk");
 const LineBotDB = require('../routes/v1/lib/LineBotDBHandler.js');
-const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB');
-const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB');
+const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
+const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB.js');
 const test_config = {
     channelAccessToken: process.env.TEST_ACCESS_TOKEN,
     channelSecret: process.env.TEST_SECRET_KEY
@@ -65,10 +65,10 @@ exports.lineBot = function (req, res) {
           offset: 1,
           limit: 1
         }).then(chunkrange => {
-          const chunkday = new Date(chunkrange.rows.date);
+          const chunkday = new Date(chunkrange.rows['date']);
           const chunkdate = chunkday.getDate();
           const chunkWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][chunkday.getDay()];
-          console.log(`chunkday&range${chunkdate + "(" + chunkWeekStr + ")"}${chunkrange.rows}`)
+          console.log(`chunkday&range${chunkdate + "(" + chunkWeekStr + ")"}${chunkrange.rows['chunkrange']}`)
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
