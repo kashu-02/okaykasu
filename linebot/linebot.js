@@ -68,6 +68,7 @@ exports.lineBot = function (req, res) {
           const chunkday = new Date(chunkrange.rows.date);
           const chunkdate = chunkday.getDate();
           const chunkWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][chunkday.getDay()];
+          console.log(`chunkday&range${chunkdate + "(" + chunkWeekStr + ")"}${chunkrange.rows.chunkrange}`)
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
