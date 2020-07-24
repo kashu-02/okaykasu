@@ -17,7 +17,7 @@ const ChunkRangeDB = sequelize.define('chunk_ranges', {
     primaryKey: true
   },
   date: {
-    type: Sequelize.DATE
+    type: Sequelize.STRING
   },
   chunkrange: {
     type: Sequelize.STRING

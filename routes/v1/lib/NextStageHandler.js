@@ -2,14 +2,17 @@
 const NextStageRangeDB = require('./NextStageRangeDB.js');
 const express = require('express');
 const router = express.Router();
-
+const moment = require('moment');
+require('moment-timezone');
+moment.tz.setDefault('Asia/Tokyo');
 /**
  * CREATE
  */
 router.post('/',function(req,res){
   console.log(req.body);
+  const nextstagedate = moment(req.body.Date).format(YYYY-MM-DD);
 NextStageRangeDB.create({
-  date:req.body.Date,
+  date:nextstagedate,
   nextstagerange:req.body.Range
 }).then(() => {
   NextStageRangeDB.findAll({
@@ -68,12 +71,13 @@ router.get('/',function(req,res){
  */
 router.put('/',function(req,res){
   console.log(req.body);
+  const nextstagedate = moment(req.body.Date).format(YYYY-MM-DD);
   NextStageRangeDB.update({
     nextstagerange:req.body.Range
   },
   { 
     where: {
-      date:req.body.Date
+      date:nextstagedate
     }
   }).then(() => {
     NextStageRangeDB.findAll({
@@ -91,9 +95,10 @@ router.put('/',function(req,res){
  * DELETE
  */
 router.delete('/',function(req,res){
+    const nextstagedate = moment(req.body.Date).format(YYYY-MM-DD);
   NextStageRangeDB.destroy({
     where: {
-      date:req.body.Date
+      date:nextstagedate
     }
   }).then(() => {
     NextStageRangeDB.findAll({

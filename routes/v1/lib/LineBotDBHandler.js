@@ -4,7 +4,9 @@ const express = require('express');
 const router = express.Router();
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-
+const moment = require('moment');
+require('moment-timezone');
+moment.tz.setDefault('Asia/Tokyo');
 /**
  * CREATE
  */
@@ -104,11 +106,10 @@ router.delete('/',function(req,res){
 
 /**
  * 
- * @param {Number} ms ミリ秒を
+ * @param {Number} ms ミリ秒をYYYY-MM-DD HH:mm:ss
  */
 function computeDuration(ms){
-  const date = new Date(ms);
-return date.toString();
+return moment(ms).format('YYYY-MM-DD HH:mm:ss');
 }
 
 module.exports.linebotcreate = linebotcreate;

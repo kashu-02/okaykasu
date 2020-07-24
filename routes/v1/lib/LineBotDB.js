@@ -24,7 +24,7 @@ const LineBotDB = sequelize.define('LineBot', {
     type: Sequelize.STRING
   },
   message_timestamp: {
-    type: Sequelize.DATE
+    type: Sequelize.STRING
   },
   source_type: {
     type: Sequelize.STRING

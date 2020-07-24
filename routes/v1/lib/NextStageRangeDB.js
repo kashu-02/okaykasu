@@ -17,7 +17,7 @@ const NextStageRangeDB = sequelize.define('nextstage_ranges', {
     primaryKey: true
   },
   date: {
-    type: Sequelize.DATE
+    type: Sequelize.STRING
   },
   nextstagerange: {
     type: Sequelize.STRING

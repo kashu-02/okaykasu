@@ -1,6 +1,9 @@
 'use strict';
 const ChunkRangeDB = require('./ChunkRangeDB.js');
 const express = require('express');
+const moment = require('moment');
+require('moment-timezone');
+moment.tz.setDefault('Asia/Tokyo');
 const router = express.Router();
 
 /**
@@ -8,8 +11,10 @@ const router = express.Router();
  */
 router.post('/',function(req,res){
   console.log(req.body);
+  const chunkdate = moment(req.body.Date).format(YYYY-MM-DD);
+
 ChunkRangeDB.create({
-  date:req.body.Date,
+  date:chunkdate,
   chunkrange:req.body.Range
 }).then(() => {
   ChunkRangeDB.findAll({
@@ -69,12 +74,13 @@ router.get('/',function(req,res){
  */
 router.put('/',function(req,res){
   console.log(req.body);
+  const chunkdate = moment(req.body.Date).format(YYYY-MM-DD);
   ChunkRangeDB.update({
     chunkrange:req.body.Range
   },
   { 
     where: {
-      date:req.body.Date
+      date:chunkdate
     }
   }).then(() => {
     ChunkRangeDB.findAll({
@@ -92,9 +98,10 @@ router.put('/',function(req,res){
  * DELETE
  */
 router.delete('/',function(req,res){
+  const chunkdate = moment(req.body.Date).format(YYYY-MM-DD);
   ChunkRangeDB.destroy({
     where: {
-      date:req.body.Date
+      date:chunkdate
     }
   }).then(() => {
     ChunkRangeDB.findAll({
