@@ -27,15 +27,42 @@ NextStageRangeDB.create({
  * READ
  */
 router.get('/',function(req,res){
-    NextStageRangeDB.findAll({
-      attributes: ['date', 'nextstagerange'],
-      order: [
-        ['date', 'ASC']
-      ]
-    }).then(nextstagerange => {
-    res.json(nextstagerange);
-    });
-});
+    console.log(`latestchunk ${req.query.latestchunk}`);
+    if(req.query.latestchunk){
+      NextStageRangeDB.findAndCountAll({
+        attributes: ['date', 'nextstagerange'],
+        order: [
+          ['date', 'ASC']
+        ],
+        offset: 1,
+        limit: 1
+      }).then(nextstagerange => {
+        res.json(nextstagerange.rows);
+      });
+    }else if(req.query.chunkdate){
+      NextStageRangeDB.findAll({
+        attributes: ['date', 'nextstagerange'],
+        order: [
+          ['date', 'ASC']
+        ],
+        where:{
+          date: req.query.chunkdate
+        }
+      }).then(nextstagerange => {
+      res.json(nextstagerange);
+      });
+    }else{
+      NextStageRangeDB.findAll({
+        attributes: ['date', 'nextstagerange'],
+        order: [
+          ['date', 'ASC']
+        ]
+      }).then(nextstagerange => {
+      res.json(nextstagerange);
+      });
+    }
+      
+  });
 
 /**
  * UPDATE

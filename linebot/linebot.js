@@ -1,6 +1,8 @@
 'use strict';
 const line = require("@line/bot-sdk");
 const LineBotDB = require('../routes/v1/lib/LineBotDBHandler.js');
+const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB');
+const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB');
 const test_config = {
     channelAccessToken: process.env.TEST_ACCESS_TOKEN,
     channelSecret: process.env.TEST_SECRET_KEY
@@ -55,15 +57,94 @@ exports.lineBot = function (req, res) {
 
       break;
       case "チャンク":
-        
+        ChunkRangeDB.findAndCountAll({
+          attributes: ['date', 'chunkrange'],
+          order: [
+            ['date', 'ASC']
+          ],
+          offset: 1,
+          limit: 1
+        }).then(chunkrange => {
+          const chunkday = new Date(chunkrange.rows.date);
+          const chunkdate = chunkday.getDate();
+          const chunkWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][chunkday.getDay()];
+          return client.replyMessage(ev.replyToken, {
+            type: "flex",
+            altText: "This is a Flex Message",
+            contents: {
+              type: "bubble",
+              size: "kilo",
+              header: {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "text",
+                    text: chunkdate + "(" + chunkWeekStr + ")",
+                    color: "#FFFFFF"
+                  }
+                ],
+                backgroundColor: "#008000"
+              },
+              body: {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "text",
+                    text: chunkrange.rows.chunkrange
+                  }
+                ]
+              }
+            }
+          })
+        });
       break;
       case "ネクステ":
+        NextStageRangeDB.findAndCountAll({
+          attributes: ['date', 'nextstagerange'],
+          order: [
+            ['date', 'ASC']
+          ],
+          offset: 1,
+          limit: 1
+        }).then(nextstagerange => {
+          const nextstageday = new Date(nextstagerange.rows.date);
+          const nextstagedate = nextstageday.getDate();
+          const nextstageWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][nextstageday.getDay()];
+          return client.replyMessage(ev.replyToken, {
+            type: "flex",
+            altText: "This is a Flex Message",
+            contents: {
+              type: "bubble",
+              size: "kilo",
+              header: {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "text",
+                    text: nextstagedate + "(" + nextstageWeekStr + ")",
+                    color: "#FFFFFF"
+                  }
+                ],
+                backgroundColor: "#FFA500"
+              },
+              body: {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "text",
+                    text: nextstagerange.rows.nextstagerange
+                  }
+                ]
+              }
+            }
+          })
+        });
       break;
     }
-    return client.replyMessage(ev.replyToken, {
-      type: "text",
-      text: `${pro.displayName}さん、今「${ev.message.text}」って言いました？`
-    })
    }
    
    async function follow(ev) {
