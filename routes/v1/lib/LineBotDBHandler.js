@@ -37,18 +37,15 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
   const perPage = req.query.perpage || 10;
   if(source_type === "user"){
     LineBotDB.findAndCountAll({
+      where: {
+        [Op.and]: [
+          {source_userId: UserorGroupId},
+          {source_groupId: null}
+        ]
+        },
       offset: (page - 1) * perPage,
       limit: perPage
-    },
-    {
-      where: {
-      [Op.and]: [
-        {source_userId: UserorGroupId},
-        {source_groupId: null}
-      ]
-      }
-    }
-    ).then(userresult => {
+    }).then(userresult => {
       const res_json = {
         page: page,
         line: userresult.rows
@@ -57,15 +54,12 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
     });
   } else if(source_type === "group" || source_type === "room"){
     LineBotDB.findAndCountAll({
-      offset: (page - 1) * perPage,
-      limit: perPage
-    },
-    {
       where: {
         source_groupId: UserorGroupId
-      }
-    }
-    ).then(groupresult => {
+      },
+      offset: (page - 1) * perPage,
+      limit: perPage
+    }).then(groupresult => {
       const res_json = {
         page: page,
         line: groupresult.rows
