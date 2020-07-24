@@ -27,6 +27,8 @@ ChunkRangeDB.create({
  * READ
  */
 router.get('/',function(req,res){
+  console.log(`latestchunk ${req.params.latestchunk}`);
+  console.log(`chunkdate ${chunkdate}`);
   if(req.params.latestchunk){
     ChunkRangeDB.findAndCountAll({
       attributes: ['date', 'chunkrange'],
