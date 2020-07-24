@@ -53,7 +53,7 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
         page: page,
         line: userresult.rows
       }
-      res.json(JSON.stringify(res_json));
+      res.json(res_json);
     });
   } else if(source_type === "group" || source_type === "room"){
     LineBotDB.findAndCountAll({
@@ -70,7 +70,7 @@ router.get('/:source_type/:UserorGroupId',function(req,res){
         page: page,
         line: groupresult.rows
       }
-      res.json(JSON.stringify(res_json));
+      res.json(res_json);
     });
   }
   
