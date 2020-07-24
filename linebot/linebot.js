@@ -111,7 +111,7 @@ exports.lineBot = function (req, res) {
           offset: 1,
           limit: 1
         }).then(nextstagerange => {
-          const nextstageday = new Date(nextstagerange.rows.date);
+          const nextstageday = new Date(nextstagerange.rows[0].date);
           const nextstagedate = nextstageday.getDate();
           const nextstageWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][nextstageday.getDay()];
           return client.replyMessage(ev.replyToken, {
@@ -138,7 +138,7 @@ exports.lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: nextstagerange.rows.nextstagerange
+                    text: nextstagerange.rows[0].nextstagerange
                   }
                 ]
               }
