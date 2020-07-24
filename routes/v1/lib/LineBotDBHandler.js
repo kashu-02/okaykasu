@@ -15,7 +15,7 @@ LineBotDB.create({
   message_timestamp: computeDuration(ev.timestamp),
   source_type: ev.source.type,
   source_userId: ev.source.userId,
-  source_groupId: ev.source.groupId || ev.source.roomId || "null",
+  source_groupId: ev.source.groupId || ev.source.roomId,
   message_type: ev.message.type,
   message_content: ev.message.text
 }).then(() => {
