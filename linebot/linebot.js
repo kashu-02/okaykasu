@@ -8,6 +8,13 @@ const test_config = {
     channelSecret: process.env.TEST_SECRET_KEY
   }; 
   const client = new line.Client(test_config);
+  const moment = require('moment');
+  require('moment-timezone');
+  moment.tz.setDefault('Asia/Tokyo');
+  moment.lang('ja', {
+    weekdays: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
+    weekdaysShort: ["日","月","火","水","木","金","土"],
+});
 
 exports.lineBot = function (req, res) {
     res.status(200).end(); //200番をレスポンスとして返しておく
@@ -65,11 +72,7 @@ exports.lineBot = function (req, res) {
           offset: 0,
           limit: 1
         }).then(chunkrange => {
-          const chunkday = new Date(chunkrange.rows[0].date);
-          const chunkdate = chunkday.getDate();
-          const chunkWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][chunkday.getDay()];
-          console.log("chunkrange" + JSON.stringify(chunkrange))
-          console.log(`chunkday&range${chunkdate + "(" + chunkWeekStr + ")"}${chunkrange.rows[0].chunkrange}`)
+          const chunkday = moment(chunkrange.rows[0].date).format('DD日(dd)');
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
@@ -82,7 +85,7 @@ exports.lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: chunkdate + "(" + chunkWeekStr + ")",
+                    text: chunkday,
                     color: "#FFFFFF"
                   }
                 ],
@@ -112,9 +115,7 @@ exports.lineBot = function (req, res) {
           limit: 1
         }).then(nextstagerange => {
           console.log("NextStageRange" + JSON.stringify(nextstagerange));
-          const nextstageday = new Date(nextstagerange.rows[0].date);
-          const nextstagedate = nextstageday.getDate();
-          const nextstageWeekStr = [ "日", "月", "火", "水", "木", "金", "土" ][nextstageday.getDay()];
+          const nextstageday = moment(nextstagerange.rows[0].date).format('DD日(dd)');
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
@@ -127,7 +128,7 @@ exports.lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: nextstagedate + "(" + nextstageWeekStr + ")",
+                    text: nextstageday,
                     color: "#FFFFFF"
                   }
                 ],
