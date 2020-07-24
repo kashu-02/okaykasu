@@ -10,7 +10,7 @@ const linebotcreate = function(ev,destination){
 LineBotDB.create({
   bot_destination: destination,
   events_type: ev.type,
-  message_timestamp: ev.timestamp,
+  message_timestamp: computeDuration(ev.timestamp),
   source_type: ev.source.type,
   source_userId: ev.source.userId,
   source_groupId: ev.source.groupId || ev.source.roomId || "null",
@@ -92,6 +92,15 @@ router.delete('/',function(req,res){
     });
   });
 });
+
+/**
+ * 
+ * @param {Number} ms ミリ秒を
+ */
+function computeDuration(ms){
+  const date = new Date(ms);
+return date.toString();
+}
 
 module.exports.linebotcreate = linebotcreate;
 module.exports.router = router;
