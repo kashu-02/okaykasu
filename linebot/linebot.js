@@ -61,6 +61,12 @@ exports.lineBot = function (req, res) {
    async function replyline(ev) {
     const pro =  await client.getProfile(ev.source.userId);
     switch(ev.message.text){
+      case "おｋ粕":
+      case "おｋ":
+      case "おk":
+      case "おけ":
+      case "おけかす":
+      case "かす":
       case "おk粕":
         OkaykasuDB.findAll({
           attributes: ['id', 'okaykasu'],
@@ -73,7 +79,14 @@ exports.lineBot = function (req, res) {
         }
         });
       break;
-      case "チャンク":
+      case 'ちゃんく':
+      case 'チャンク':
+      case 'おk粕　チャンク':
+      case 'おk粕 チャンク': 
+      case 'おけかす　チャンク':
+      case 'チ':
+      case 'ち':
+      case 'お':
         ChunkRangeDB.findAndCountAll({
           attributes: ['date', 'chunkrange'],
           order: [
@@ -115,7 +128,9 @@ exports.lineBot = function (req, res) {
           })
         });
       break;
-      case "ネクステ":
+      case 'ネクステ':
+      case 'ネ':
+      case 'ね':
         NextStageRangeDB.findAndCountAll({
           attributes: ['date', 'nextstagerange'],
           order: [
@@ -157,6 +172,33 @@ exports.lineBot = function (req, res) {
             }
           })
         });
+      break;
+      case "おk粕 bye":
+      case "おk粕　bye":
+      case "おｋ粕 bye":
+      case "おｋ粕　bye":
+      case "おk粕bye":
+      case "おｋ粕bye":
+        if(ev.source.type === "group"){
+          client.replyMessage(ev.replyToken, {
+            type: 'text',
+            text: 'バイバイ…'
+          }).then(() => {
+            client.leaveGroup(ev.source.groupId).then(() => {})
+          })
+        }else if(ev.source.type === "room"){
+          client.replyMessage(ev.replyToken, {
+            type: 'text',
+            text: 'バイバイ…'
+          }).then(() => {
+            client.leaveRoom(ev.source.roomId).then(() => {})
+          })
+        }else if(ev.source.type === "user"){
+          client.replyMessage(ev.replyToken, {
+            type: 'text',
+            text: 'グループ、複数人トークルーム以外ではBOTは退出できません。'
+          }).then(() => {})
+        }
       break;
     }
    }
