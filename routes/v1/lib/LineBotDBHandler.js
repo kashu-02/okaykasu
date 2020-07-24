@@ -92,7 +92,7 @@ router.delete('/',function(req,res){
         ['date', 'ASC']
       ]
     }).then(linebot => {
-    res.json(JSON.stringify(linebot));
+    res.json(linebot);
     });
   });
 });

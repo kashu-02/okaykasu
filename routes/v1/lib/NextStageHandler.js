@@ -18,7 +18,7 @@ NextStageRangeDB.create({
         ['date', 'ASC']
       ]
   }).then(nextstagerange => {
-  res.json(JSON.stringify(nextstagerange));
+  res.json(nextstagerange);
   });
 });
 });
@@ -33,7 +33,7 @@ router.get('/',function(req,res){
         ['date', 'ASC']
       ]
     }).then(nextstagerange => {
-    res.json(JSON.stringify(nextstagerange));
+    res.json(nextstagerange);
     });
 });
 
@@ -56,7 +56,7 @@ router.put('/',function(req,res){
         ['date', 'ASC']
       ]
     }).then(nextstagerange => {
-    res.json(JSON.stringify(nextstagerange));
+    res.json(nextstagerange);
     });
   });
 });
@@ -76,7 +76,7 @@ router.delete('/',function(req,res){
         ['date', 'ASC']
       ]
     }).then(nextstagerange => {
-    res.json(JSON.stringify(nextstagerange));
+    res.json(nextstagerange);
     });
   });
 });

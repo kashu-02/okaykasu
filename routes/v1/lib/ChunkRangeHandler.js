@@ -18,7 +18,7 @@ ChunkRangeDB.create({
       ['date', 'ASC']
     ]
   }).then(chunkrange => {
-  res.json(JSON.stringify(chunkrange));
+  res.json(chunkrange);
   });
 });
 });
@@ -34,7 +34,7 @@ router.get('/',function(req,res){
         ['date', 'ASC']
       ]
     }).then(chunkrange => {
-    res.json(JSON.stringify(chunkrange));
+    res.json(chunkrange);
     });
 });
 
@@ -57,7 +57,7 @@ router.put('/',function(req,res){
         ['date', 'ASC']
       ]
     }).then(chunkrange => {
-    res.json(JSON.stringify(chunkrange));
+    res.json(chunkrange);
     });
   });
 });
@@ -77,7 +77,7 @@ router.delete('/',function(req,res){
         ['date', 'ASC']
       ]
     }).then(chunkrange => {
-    res.json(JSON.stringify(chunkrange));
+    res.json(chunkrange);
     });
   });
 });

@@ -17,7 +17,7 @@ OkaykasuDB.create({
         ['id', 'ASC']
       ]
   }).then(okaykasu => {
-  res.json(JSON.stringify(okaykasu));
+  res.json(okaykasu);
   });
 });
 });
@@ -32,7 +32,7 @@ router.get('/',function(req,res){
         ['id', 'ASC']
       ]
     }).then(okaykasu => {
-    res.json(JSON.stringify(okaykasu));
+    res.json(okaykasu);
     });
 });
 
@@ -55,7 +55,7 @@ router.put('/',function(req,res){
         ['id', 'ASC']
       ]
     }).then(okaykasu => {
-    res.json(JSON.stringify(okaykasu));
+    res.json(okaykasu);
     });
   });
 });
@@ -75,7 +75,7 @@ router.delete('/',function(req,res){
         ['id', 'ASC']
       ]
     }).then(okaykasu => {
-    res.json(JSON.stringify(okaykasu));
+    res.json(okaykasu);
     });
   });
 });
