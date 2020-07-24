@@ -27,19 +27,18 @@ NextStageRangeDB.create({
  * READ
  */
 router.get('/',function(req,res){
-    console.log(`latestchunk ${req.query.latestchunk}`);
-    if(req.query.latestchunk){
+    if(req.query.latestnextstage){
       NextStageRangeDB.findAndCountAll({
         attributes: ['date', 'nextstagerange'],
         order: [
           ['date', 'ASC']
         ],
-        offset: 1,
+        offset: 0,
         limit: 1
       }).then(nextstagerange => {
         res.json(nextstagerange.rows[0]);
       });
-    }else if(req.query.chunkdate){
+    }else if(req.query.nextstagedate){
       NextStageRangeDB.findAll({
         attributes: ['date', 'nextstagerange'],
         order: [

@@ -62,7 +62,7 @@ exports.lineBot = function (req, res) {
           order: [
             ['date', 'ASC']
           ],
-          offset: 1,
+          offset: 0,
           limit: 1
         }).then(chunkrange => {
           const chunkday = new Date(chunkrange.rows[0].date);
@@ -108,7 +108,7 @@ exports.lineBot = function (req, res) {
           order: [
             ['date', 'ASC']
           ],
-          offset: 1,
+          offset: 0,
           limit: 1
         }).then(nextstagerange => {
           console.log("NextStageRange" + JSON.stringify(nextstagerange));

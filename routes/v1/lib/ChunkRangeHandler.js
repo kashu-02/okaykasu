@@ -34,7 +34,7 @@ router.get('/',function(req,res){
       order: [
         ['date', 'ASC']
       ],
-      offset: 1,
+      offset: 0,
       limit: 1
     }).then(chunkrange => {
       res.json(chunkrange.rows[0]);

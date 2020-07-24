@@ -4,7 +4,8 @@ const sequelize = new Sequelize(
   process.env.DATABASE_URL,
   {
     logging: true,
-    operatorsAliases: false 
+    operatorsAliases: false,
+    timezone: 'Asia/Tokyo'
   });
 const ChunkRangeDB = sequelize.define('chunk_ranges', {
   id: {
