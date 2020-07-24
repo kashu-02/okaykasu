@@ -3,6 +3,7 @@ const line = require("@line/bot-sdk");
 const LineBotDB = require('../routes/v1/lib/LineBotDBHandler.js');
 const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
 const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB.js');
+const OkaykasuDB = require('../routes/v1/lib/OkaykasuDB.js');
 const test_config = {
     channelAccessToken: process.env.TEST_ACCESS_TOKEN,
     channelSecret: process.env.TEST_SECRET_KEY
@@ -61,7 +62,16 @@ exports.lineBot = function (req, res) {
     const pro =  await client.getProfile(ev.source.userId);
     switch(ev.message.text){
       case "おk粕":
-
+        OkaykasuDB.findAll({
+          attributes: ['id', 'okaykasu'],
+          order: [
+            ['id', 'ASC']
+          ]
+        }).then(okaykasu => {
+        for(let i = 0;i < okaykasu.length;i++){
+          client.replyMessage(ev.replyToken, okaykasu[i].okaykasu);
+        }
+        });
       break;
       case "チャンク":
         ChunkRangeDB.findAndCountAll({
