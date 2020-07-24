@@ -6,7 +6,7 @@ const router = express.Router();
 /**
  * CREATE
  */
-exports.linebotcreate = function(ev){
+const linebotcreate = function(ev){
 LineBotDB.create({
   events_type: ev.type,
   message_timestamp: ev.timestamp,
@@ -92,4 +92,5 @@ router.delete('/',function(req,res){
   });
 });
 
+module.exports.linebotcreate = linebotcreate;
 module.exports = router;
