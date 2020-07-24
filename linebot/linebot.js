@@ -13,14 +13,15 @@ exports.lineBot = function (req, res) {
     console.log(`linebot内のevents`);
     console.log(events);  // console.log(`eventsは${events}、と${req.body.events}`); \\この書き方だと中身の配列が見えなかった。
     const promises = [];
-   
+   const destination = req.body.destination
+   console.log(`LINEBOTdestination: ${destination}`);
     for (let i = 0, l = events.length; i < l; i++) {
       const ev = events[i];
       console.log(`${i}番目のイベントの中身は`);
       console.log(events[i]);
       console.log(`ev.typeは`);
       console.log(ev.type);
-      LineBotDB.linebotcreate(ev);//DB書き込み
+      LineBotDB.linebotcreate(ev,destination);//DB書き込み
       switch (ev.type) {
         case "join":
           promises.push( //promisesにechoman(ev)の処理を配列として入れるメソッドぽい。

@@ -13,6 +13,9 @@ const LineBotDB = sequelize.define('LineBot', {
     autoIncrement: true,
     primaryKey: true
   },
+  bot_destination: {
+    type: Sequelize.STRING
+  },
   events_type: {
     type: Sequelize.STRING
   },
