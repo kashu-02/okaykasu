@@ -72,7 +72,7 @@ exports.lineBot = function (req, res) {
           offset: 0,
           limit: 1
         }).then(chunkrange => {
-          const chunkday = moment(chunkrange.rows[0].date).format('DD日(dd)');
+          const chunkday = moment(chunkrange.rows[0].date).format('DD日(dddd)');
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
@@ -115,7 +115,7 @@ exports.lineBot = function (req, res) {
           limit: 1
         }).then(nextstagerange => {
           console.log("NextStageRange" + JSON.stringify(nextstagerange));
-          const nextstageday = moment(nextstagerange.rows[0].date).format('DD日(dd)');
+          const nextstageday = moment(nextstagerange.rows[0].date).format('DD日(dddd)');
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
