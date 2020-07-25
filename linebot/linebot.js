@@ -1,7 +1,7 @@
 'use strict';
 const line = require("@line/bot-sdk");
 const LineBotDB = require('../routes/v1/lib/LineBotDBHandler.js');
-const LineFriend = require('../routes/v1/lib/LineFriendDBHandler.js')
+const LineFriend = require('../routes/v1/lib/LineFriendHandler.js')
 const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
 const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB.js');
 const OkaykasuDB = require('../routes/v1/lib/OkaykasuDB.js');
