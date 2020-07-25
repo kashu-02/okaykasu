@@ -32,4 +32,4 @@ const LineFriendDB = sequelize.define('LineFriend', {
 });
 
 LineFriendDB.sync();
-module.exports = LineFriend;
+module.exports = LineFriendDB;
