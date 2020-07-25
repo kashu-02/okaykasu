@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
     timezone: '+09:00' 
   });
 const Op = Sequelize.Op;
-const LineBotDB = sequelize.define('LineFriend', {
+const LineFriendDB = sequelize.define('LineFriend', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -31,5 +31,5 @@ const LineBotDB = sequelize.define('LineFriend', {
   }
 });
 
-LineFriend.sync();
+LineFriendDB.sync();
 module.exports = LineFriend;
