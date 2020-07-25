@@ -5,11 +5,11 @@ const LineFriend = require('../routes/v1/lib/LineFriendHandler.js')
 const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
 const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB.js');
 const OkaykasuDB = require('../routes/v1/lib/OkaykasuDB.js');
-const test_config = {
-    channelAccessToken: process.env.TEST_ACCESS_TOKEN,
-    channelSecret: process.env.TEST_SECRET_KEY
+const bunkei_config = {
+    channelAccessToken: process.env.BUNKEI_ACCESS_TOKEN,
+    channelSecret: process.env.BUNKEI_SECRET_KEY
   }; 
-  const client = new line.Client(test_config);
+  const client = new line.Client(bunkei_config);
   const moment = require('moment');
   require('moment-timezone');
   moment.tz.setDefault('Asia/Tokyo');
@@ -18,11 +18,11 @@ const test_config = {
     weekdaysShort: ["日","月","火","水","木","金","土"],
 });
 
-exports.lineBot = function (req, res) {
+exports.bunkei_lineBot = function (req, res) {
     res.status(200).end(); //200番をレスポンスとして返しておく
     const events = req.body.events;
     console.log(`linebot内のevents`);
-    console.log(events);  // console.log(`eventsは${events}、と${req.body.events}`); \\この書き方だと中身の配列が見えなかった。
+    console.log(events); 
     const promises = [];
    const destination = req.body.destination
    console.log(`LINEBOTdestination: ${destination}`);
@@ -68,24 +68,6 @@ exports.lineBot = function (req, res) {
     LineFriend.linefriendupdate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
     switch(ev.message.text){
-      case "おｋ粕":
-      case "おｋ":
-      case "おk":
-      case "おけ":
-      case "おけかす":
-      case "かす":
-      case "おk粕":
-        OkaykasuDB.findAll({
-          attributes: ['id', 'okaykasu'],
-          order: [
-            ['id', 'ASC']
-          ]
-        }).then(okaykasu => {
-        for(let i = 0;i < okaykasu.length;i++){
-          client.replyMessage(ev.replyToken, JSON.parse(okaykasu[i].okaykasu));
-        }
-        });
-      break;
       case 'ちゃんく':
       case 'チャンク':
       case 'おk粕　チャンク':
@@ -217,7 +199,7 @@ exports.lineBot = function (req, res) {
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
-      text: `${pro}さん、友だち追加ありがとうございます！\n\nおk粕は日々の連絡事項や課題を配信するbotです。\n\n主な機能は、下のメニューから送信でき、\n\n「おk粕」=配信した内容を取得\n「classroom」=最新10件のclassroomの投稿を取得\n「チャンク」=チャンクの範囲を取得\n\nといった感じです。`
+      text: `${pro}さん、友だち追加ありがとうございます！\n\nおk粕は日々の連絡事項や課題を配信するbotです。\n\n主な機能は、下のメニューから送信でき、\n\n「チャンク」=チャンクの範囲を取得\n\nといった感じです。`
       },
       {
         type: "text",

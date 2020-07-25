@@ -8,14 +8,25 @@ const test_config = {
   channelAccessToken: process.env.TEST_ACCESS_TOKEN,
   channelSecret: process.env.TEST_SECRET_KEY
 }; 
-const client = new line.Client(test_config);
-const lineBot = require('./linebot/linebot.js');
+const rikei_config = {
+  channelAccessToken: process.env.RIKEI_ACCESS_TOKEN,
+  channelSecret: process.env.RIKEI_SECRET_KEY
+}; 
+const bunkei_config = {
+  channelAccessToken: process.env.BUNKEI_ACCESS_TOKEN,
+  channelSecret: process.env.BUNKEI_SECRET_KEY
+}; 
+const test_lineBot = require('./linebot/test_linebot.js');
+const rikei_lineBot = require('./linebot/rikei_linebot.js');
+const bunkei_lineBot = require('./linebot/bunkei_linebot.js');
 const router = require('./routes/v1/');
 var bodyParser = require('body-parser');
 
 express()
   .use(helmet())
-  .post("/hook/", line.middleware(test_config), (req, res) => lineBot.lineBot(req, res))
+  .post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot.test_lineBot(req, res))
+  .post("/rikei_hook/", line.middleware(rikei_config), (req, res) => rikei_lineBot.rikei_lineBot(req, res))
+  .post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
   .use(express.static(path.join(__dirname, "public")))
