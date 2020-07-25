@@ -64,7 +64,7 @@ exports.lineBot = function (req, res) {
    }
    
    async function replyline(ev,destination) {
-    const pro =  await client.getProfile(ev.source.userId);
+    const pro =  await (await client.getProfile(ev.source.userId)).displayName;
     LineFriend.linefriendupdate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
     switch(ev.message.text){
@@ -212,7 +212,7 @@ exports.lineBot = function (req, res) {
    }
    
    async function follow(ev,destination) {
-    const pro =  await client.getProfile(ev.source.userId);
+    const pro =  await (await client.getProfile(ev.source.userId)).displayName;
     LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
     return client.replyMessage(ev.replyToken, [
       {

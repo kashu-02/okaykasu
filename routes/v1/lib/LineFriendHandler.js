@@ -19,7 +19,7 @@ const linefriendcreate = function(ev,destination,pro){
 LineFriendDB.create({
     friend_bottype: bottype,
     friend_talktype: ev.source.type,
-    displayname: pro.displayName,
+    displayname: pro,
     userorgroupID: ev.source.groupId || ev.source.roomId || ev.source.userId
 }).then(() => {
 });
@@ -87,12 +87,12 @@ const linefriendupdate = function(ev,destination,pro){
         defaults:{
         friend_bottype: bottype,
         friend_talktype: ev.source.type,
-        displayname: pro.displayName,
+        displayname: pro,
         userorgroupID: ev.source.groupId || ev.source.roomId || ev.source.userId
     }}).then(() => {
     });
   LineFriendDB.update({
-    displayname: pro.displayName
+    displayname: pro
   },{
     where: {
         [Op.and]: [

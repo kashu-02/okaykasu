@@ -14,7 +14,7 @@ const linebotcreate = function(ev,destination,pro){
   if(!pro){
     var username = null;
   }else{
-    var username = pro.displayName;
+    var username = pro;
   }
 LineBotDB.create({
   bot_destination: destination,
