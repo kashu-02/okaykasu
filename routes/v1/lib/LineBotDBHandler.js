@@ -18,8 +18,8 @@ LineBotDB.create({
   source_type: ev.source.type,
   source_userId: ev.source.userId,
   source_groupId: ev.source.groupId || ev.source.roomId,
-  source_username: ev.source.username,
-  message_type: pro.displayName,
+  source_username: pro.displayName,
+  message_type: ev.message.type,
   message_content: ev.message.text
 }).then(() => {
 });
