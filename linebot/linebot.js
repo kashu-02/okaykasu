@@ -240,6 +240,7 @@ exports.lineBot = function (req, res) {
        var pro = null;
      }else{
       var pro =  await client.getGroupSummary(GrouporRoomId);
+      console.log(pro);
      }
     LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
     return;
