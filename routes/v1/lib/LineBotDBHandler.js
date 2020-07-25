@@ -11,6 +11,11 @@ moment.tz.setDefault('Asia/Tokyo');
  * CREATE
  */
 const linebotcreate = function(ev,destination,pro){
+  if(!pro){
+    var username = 'undefined';
+  }else{
+    var username = pro.displayName;
+  }
 LineBotDB.create({
   bot_destination: destination,
   events_type: ev.type,
@@ -18,7 +23,7 @@ LineBotDB.create({
   source_type: ev.source.type,
   source_userId: ev.source.userId,
   source_groupId: ev.source.groupId || ev.source.roomId,
-  source_username: pro.displayName,
+  source_username: username,
   message_type: ev.message.type,
   message_content: ev.message.text
 }).then(() => {
