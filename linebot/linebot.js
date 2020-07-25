@@ -232,9 +232,7 @@ exports.lineBot = function (req, res) {
    }
    
    async function unfollow(ev,destination){
-    const pro =  await client.getProfile(ev.source.userId);
     LineFriend.linefrienddelete(ev,destination);//友だちDB書き込み
-    LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
    }
 
    async function join(ev,destination) {
@@ -245,9 +243,7 @@ exports.lineBot = function (req, res) {
    }
 
    async function leave(ev,destination){
-    const pro =  await client.getProfile(ev.source.userId);
     LineFriend.linefrienddelete(ev,destination);//友だちDB書き込み
-    LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
    }
 
  
