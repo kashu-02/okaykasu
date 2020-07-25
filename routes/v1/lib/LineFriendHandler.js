@@ -77,6 +77,20 @@ const linefriendupdate = function(ev,destination,pro){
             var bottype = 'test';
         break;
     }
+    LineFriendDB.findOrCreate({
+            where: {
+                [Op.and]: [
+                  {userorgroupID: ev.source.groupId || ev.source.roomId || ev.source.userId},
+                  {friend_bottype: bottype}
+                ]
+            },
+        defaults:{
+        friend_bottype: bottype,
+        friend_talktype: ev.source.type,
+        displayname: pro.displayName,
+        userorgroupID: ev.source.groupId || ev.source.roomId || ev.source.userId
+    }}).then(() => {
+    });
   LineFriendDB.update({
     displayname: pro.displayName
   },{
