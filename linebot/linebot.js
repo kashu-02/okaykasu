@@ -226,11 +226,23 @@ exports.lineBot = function (req, res) {
     ])
    }
    
+   async function unfollow(ev,destination){
+    const pro =  await client.getProfile(ev.source.userId);
+    LineFriend.linefrienddelete(ev,destination,pro);//友だちDB書き込み
+    LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
+   }
+
    async function join(ev,destination) {
     const pro =  await client.getProfile(ev.source.userId);
     LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
     return;
+   }
+
+   async function leave(ev,destination){
+    const pro =  await client.getProfile(ev.source.userId);
+    LineFriend.linefrienddelete(ev,destination,pro);//友だちDB書き込み
+    LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
    }
 
  
