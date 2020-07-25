@@ -236,7 +236,11 @@ exports.lineBot = function (req, res) {
 
    async function join(ev,destination) {
      const GrouporRoomId = ev.source.groupId || ev.source.roomId
-    const pro =  await client.getProfile(GrouporRoomId);
+     if(ev.source.type === 'room'){
+       var pro = null;
+     }else{
+      var pro =  await client.getGroupSummary(GrouporRoomId);
+     }
     LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
     return;
    }
