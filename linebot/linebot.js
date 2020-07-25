@@ -37,22 +37,27 @@ exports.lineBot = function (req, res) {
           promises.push( 
             join(ev,destination)
           );
+          break;
         case "leave":
           promises.push(
             leave(ev,destination) 
           );
+          break;
         case "follow":
           promises.push(
             follow(ev,destination) 
           );
+          break;
         case "unfollow":
           promises.push(
             unfollow(ev,destination) 
           );
+          break;
         case "message":
           promises.push(
             replyline(ev,destination)
           );
+          break;
       } 
     }
     Promise.all(promises).then(console.log("pass")); 
