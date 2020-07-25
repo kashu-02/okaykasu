@@ -35,30 +35,30 @@ exports.lineBot = function (req, res) {
       switch (ev.type) {
         case "join":
           promises.push( 
-            join(ev)
+            join(ev,destination)
           );
         case "leave":
           promises.push(
-            leave(ev) 
+            leave(ev,destination) 
           );
         case "follow":
           promises.push(
-            follow(ev) 
+            follow(ev,destination) 
           );
         case "unfollow":
           promises.push(
-            unfollow(ev) 
+            unfollow(ev,destination) 
           );
         case "message":
           promises.push(
-            replyline(ev)
+            replyline(ev,destination)
           );
       } 
     }
     Promise.all(promises).then(console.log("pass")); 
    }
    
-   async function replyline(ev) {
+   async function replyline(ev,destination) {
     const pro =  await client.getProfile(ev.source.userId);
     LineFriend.linefriendupdate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
@@ -206,7 +206,7 @@ exports.lineBot = function (req, res) {
     }
    }
    
-   async function follow(ev) {
+   async function follow(ev,destination) {
     const pro =  await client.getProfile(ev.source.userId);
     LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
@@ -226,7 +226,7 @@ exports.lineBot = function (req, res) {
     ])
    }
    
-   async function join(ev) {
+   async function join(ev,destination) {
     const pro =  await client.getProfile(ev.source.userId);
     LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
