@@ -1,6 +1,7 @@
 'use strict';
 const line = require("@line/bot-sdk");
 const LineBotDB = require('../routes/v1/lib/LineBotDBHandler.js');
+const LineFriend = require('../routes/v1/lib/LineFriendDBHandler.js')
 const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
 const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB.js');
 const OkaykasuDB = require('../routes/v1/lib/OkaykasuDB.js');
@@ -31,11 +32,10 @@ exports.lineBot = function (req, res) {
       console.log(events[i]);
       console.log(`ev.typeは`);
       console.log(ev.type);
-      LineBotDB.linebotcreate(ev,destination);//DB書き込み
       switch (ev.type) {
         case "join":
-          promises.push( //promisesにechoman(ev)の処理を配列として入れるメソッドぽい。
-            join(ev) //return の内容が、Promise のthenのコールバック関数に渡る.ここではpromise.push()
+          promises.push( 
+            join(ev)
           );
         case "leave":
           promises.push(
@@ -60,6 +60,8 @@ exports.lineBot = function (req, res) {
    
    async function replyline(ev) {
     const pro =  await client.getProfile(ev.source.userId);
+    LineFriend.linefriendupdate(ev,destination,pro);//友だちDB書き込み
+    LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
     switch(ev.message.text){
       case "おｋ粕":
       case "おｋ":
@@ -179,6 +181,7 @@ exports.lineBot = function (req, res) {
       case "おｋ粕　bye":
       case "おk粕bye":
       case "おｋ粕bye":
+        LineFriend.linefrienddelete(ev,destination,pro);//友だちDB書き込み
         if(ev.source.type === "group"){
           client.replyMessage(ev.replyToken, {
             type: 'text',
@@ -205,37 +208,29 @@ exports.lineBot = function (req, res) {
    
    async function follow(ev) {
     const pro =  await client.getProfile(ev.source.userId);
+    LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
+    LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
-      text: `${pro.displayName}さん、こんにちは。調整くんです。\\n${pro.displayName}さんの代わりに、ぼくがスケジュール調整をするよ。`
+      text: `${pro.displayName}さん、友だち追加ありがとうございます！\\n\\nおk粕は日々の連絡事項や課題を配信するbotです。\\n\\n主な機能は、下のメニューから送信でき、\\n\\n「おk粕」=配信した内容を取得\\n「classroom」=最新10件のclassroomの投稿を取得\\n「チャンク」=チャンクの範囲を取得\\n\\nといった感じです。`
       },
       {
         type: "text",
-        text: `このリンクから依頼してね。`
+        text: `なお、LINEだけでなく、Webブラウザからも閲覧できます。LINEが入っていない端末やiPadで使えます。\\nWEBブラウザから閲覧するには生徒であることを確認するため、麗明のGoogleアカウントでのログインが必要となります。`
       },  
       {
         type: "text",
-        text: "https://scheduler-linebot.herokuapp.com/"
+        text: "https://okaykasu.herokuapp.com/"
       }
     ])
    }
    
    async function join(ev) {
-    return client.replyMessage(ev.replyToken, [
-      {
-      type: "text",
-      text: `みなさん、こんにちは。調整くんです。みんなの代わりに、ぼくがスケジュール調整をするよ。`
-      },
-      {
-        type: "text",
-        text: `このリンクから依頼してね。`
-      },  
-      {
-        type: "text",
-        text: "https://scheduler-linebot.herokuapp.com/"
-      }
-    ])
+    const pro =  await client.getProfile(ev.source.userId);
+    LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
+    LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
+    return;
    }
 
  

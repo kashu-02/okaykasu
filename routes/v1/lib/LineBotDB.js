@@ -35,6 +35,9 @@ const LineBotDB = sequelize.define('LineBot', {
   source_groupId: {
     type: Sequelize.STRING
   },
+  source_username: {
+    type: Sequelize.STRING
+  },
   message_type: {
     type: Sequelize.STRING
   },
