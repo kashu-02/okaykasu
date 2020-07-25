@@ -37,7 +37,14 @@ router.get('/:bot_destination/:source_type/:UserorGroupId',function(req,res){
   switch(req.params.bot_destination){
     case "test":
       var bot_destination = "U0f16903d7c2436ebb99c2459124fd40d";
-      default:
+      break;
+    case "rikei":
+      var bot_destination = "U8270a125113318537d1d4eb2a53fd740";
+      break;
+    case "bunkei":
+        var bot_destination = "U0f141a37a3b6b606b01b5696f916ea2b";
+        break;  
+    default:
         res.status(400).json({ error: 'Invalid bot_destination' });
     break;
   }

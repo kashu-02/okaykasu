@@ -15,6 +15,12 @@ const linefriendcreate = function(ev,destination,pro){
         case "U0f16903d7c2436ebb99c2459124fd40d":
             var bottype = 'test';
         break;
+        case "U8270a125113318537d1d4eb2a53fd740":
+            var bottype = 'rikei';
+            break;
+        case "U0f141a37a3b6b606b01b5696f916ea2b":
+             var bottype = 'bunkei';
+             break;
     }
 LineFriendDB.create({
     friend_bottype: bottype,
@@ -76,6 +82,12 @@ const linefriendupdate = function(ev,destination,pro){
         case "U0f16903d7c2436ebb99c2459124fd40d":
             var bottype = 'test';
         break;
+        case "U8270a125113318537d1d4eb2a53fd740":
+            var bottype = 'rikei';
+            break;
+        case "U0f141a37a3b6b606b01b5696f916ea2b":
+             var bottype = 'bunkei';
+             break;
     }
     LineFriendDB.findOrCreate({
             where: {
@@ -111,6 +123,12 @@ const linefrienddelete = function(ev,destination){
         case "U0f16903d7c2436ebb99c2459124fd40d":
             var bottype = 'test';
         break;
+        case "U8270a125113318537d1d4eb2a53fd740":
+            var bottype = 'rikei';
+            break;
+        case "U0f141a37a3b6b606b01b5696f916ea2b":
+             var bottype = 'bunkei';
+             break;
     }
   LineFriendDB.destroy({
     where: {
