@@ -217,11 +217,11 @@ exports.lineBot = function (req, res) {
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
-      text: `${pro.displayName}さん、友だち追加ありがとうございます！\\n\\nおk粕は日々の連絡事項や課題を配信するbotです。\\n\\n主な機能は、下のメニューから送信でき、\\n\\n「おk粕」=配信した内容を取得\\n「classroom」=最新10件のclassroomの投稿を取得\\n「チャンク」=チャンクの範囲を取得\\n\\nといった感じです。`
+      text: `${pro.displayName}さん、友だち追加ありがとうございます！\n\nおk粕は日々の連絡事項や課題を配信するbotです。\n\n主な機能は、下のメニューから送信でき、\n\n「おk粕」=配信した内容を取得\n「classroom」=最新10件のclassroomの投稿を取得\n「チャンク」=チャンクの範囲を取得\n\nといった感じです。`
       },
       {
         type: "text",
-        text: `なお、LINEだけでなく、Webブラウザからも閲覧できます。LINEが入っていない端末やiPadで使えます。\\nWEBブラウザから閲覧するには生徒であることを確認するため、麗明のGoogleアカウントでのログインが必要となります。`
+        text: `なお、LINEだけでなく、Webブラウザからも閲覧できます。LINEが入っていない端末やiPadで使えます。\nWEBブラウザから閲覧するには生徒であることを確認するため、麗明のGoogleアカウントでのログインが必要となります。`
       },  
       {
         type: "text",
