@@ -239,7 +239,7 @@ exports.lineBot = function (req, res) {
      if(ev.source.type === 'room'){
        var pro = null;
      }else{
-      var pro =  await client.getGroupSummary(GrouporRoomId);
+      var pro =  await (await client.getGroupSummary(GrouporRoomId)).groupName;
       console.log(pro);
      }
     LineFriend.linefriendcreate(ev,destination,pro);//友だちDB書き込み
