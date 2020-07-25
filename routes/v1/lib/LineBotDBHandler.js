@@ -16,6 +16,16 @@ const linebotcreate = function(ev,destination,pro){
   }else{
     var username = pro.displayName;
   }
+  if(!ev.message.type){
+    var messagetype = 'undefined';
+  }else{
+    var messagetype = ev.message.type;
+  }
+  if(!ev.message.text){
+    var messagecontent = 'undefined';
+  }else{
+    var messagecontent = ev.message.text;
+  }
 LineBotDB.create({
   bot_destination: destination,
   events_type: ev.type,
@@ -24,8 +34,8 @@ LineBotDB.create({
   source_userId: ev.source.userId,
   source_groupId: ev.source.groupId || ev.source.roomId,
   source_username: username,
-  message_type: ev.message.type,
-  message_content: ev.message.text
+  message_type: messagetype,
+  message_content: messagecontent
 }).then(() => {
 });
 };
