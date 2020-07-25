@@ -106,7 +106,7 @@ const linefriendupdate = function(ev,destination,pro){
 /**
  * DELETE
  */
-const linefrienddelete = function(ev,destination,pro){
+const linefrienddelete = function(ev,destination){
     switch(destination){
         case "U0f16903d7c2436ebb99c2459124fd40d":
             var bottype = 'test';
