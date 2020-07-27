@@ -81,9 +81,11 @@ exports.test_lineBot = function (req, res) {
             ['id', 'ASC']
           ]
         }).then(okaykasu => {
+          let sendokaykasu = [];
         for(let i = 0;i < okaykasu.length;i++){
-          await client.replyMessage(ev.replyToken, JSON.parse(okaykasu[i].okaykasu));
+           sendokaykasu.push(JSON.parse(okaykasu[i].okaykasu));  
         }
+        client.replyMessage(ev.replyToken, sendokaykasu);
         });
       break;
       case 'ちゃんく':
