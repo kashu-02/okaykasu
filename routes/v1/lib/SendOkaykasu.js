@@ -80,11 +80,10 @@ router.post('/',function(req,res){
             res.status(500).send(err);
         });
     }else if (send_type === 'broadcast'){
-        client.broadcast(message)
-        .then(() => {
+        client.broadcast(message).then(() => {
+            console.log(`finished`)
             res.status(200);
-        })
-        .catch((err) => {
+        }).catch((err) => {
             res.status(500).send(err);
         });
     }else{
