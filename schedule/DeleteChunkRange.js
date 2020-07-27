@@ -1,3 +1,4 @@
+'use strict';
 const moment = require('moment');
   require('moment-timezone');
   moment.tz.setDefault('Asia/Tokyo');
@@ -6,6 +7,8 @@ const moment = require('moment');
     weekdaysShort: ["日","月","火","水","木","金","土"],
 });
 const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
+
+DeleteChunkRange()
 
 function DeleteChunkRange(){
     const nowday = moment().format("YYYY-MM-DD");
