@@ -37,9 +37,7 @@ LineFriendDB.create({
 router.get('/',function(req,res){
   const UserorGroupId = req.query.UserorGroupId;
   const bot_type = req.query.Bottype;
-  console.log(`source_type: ${source_type}`);
-  console.log(`UserorGroupId: ${UserorGroupId}`);
-  if(!UserorGroupId && !bot_type){
+  if(UserorGroupId && bot_type){
     OkaykasuDB.findAll({
         where: {
             [Op.and]: [
@@ -50,14 +48,14 @@ router.get('/',function(req,res){
         }).then(linefriends => {
         res.json(linefriends);
         });
-  }else if(!UserorGroupId){
+  }else if(UserorGroupId && !bot_type){
     OkaykasuDB.findAll({
         where: {
             userorgroupID: UserorGroupId
         }}).then(linefriends => {
         res.json(linefriends);
         });
-  }else if(!bot_type){
+  }else if(bot_type){
     OkaykasuDB.findAll({
         where: {
             friend_bottype: bot_type
