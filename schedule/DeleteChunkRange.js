@@ -24,7 +24,7 @@ function DeleteChunkRange(){
           console.log(chunkrange.rows[0].date);
         const chunkday = moment(chunkrange.rows[0].date);
         if(chunkday.isSameOrBefore(nowday)){
-            OkaykasuDB.destroy({
+            ChunkRangeDB.destroy({
                 where: {
                   date: chunkday.format("YYYY-MM-DD")
                 }
