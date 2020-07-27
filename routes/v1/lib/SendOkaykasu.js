@@ -57,12 +57,18 @@ router.post('/',function(req,res){
                 OkaykasuDB.destroy({ truncate: true }).then(() => {
                     OkaykasuDB.create({
                         okaykasu: JSON.stringify(message)
-                      }).then(() => {res.status(200).json({ result: 'OK'});});
+                      }).then(() => {res.status(200).json({ result: 'OK'});})
+                      .catch(() => {
+                        res.status(500).json({ result: 'Database write error'});
+                    });
                 });
             }else if(db_type === 'add'){
                 OkaykasuDB.create({
                     okaykasu: JSON.stringify(message)
-                  }).then(() => {res.status(200).json({ result: 'OK'});});
+                  }).then(() => {res.status(200).json({ result: 'OK'});})
+                  .catch(() => {
+                    res.status(500).json({ result: 'Database write error'});
+                });
             }
         })
         .catch((err) => {
@@ -76,12 +82,18 @@ router.post('/',function(req,res){
                 OkaykasuDB.destroy({ truncate: true }).then(() => {
                     OkaykasuDB.create({
                         okaykasu: JSON.stringify(message)
-                      }).then(() => {res.status(200).json({ result: 'OK'});});
+                      }).then(() => {res.status(200).json({ result: 'OK'});})
+                      .catch(() => {
+                        res.status(500).json({ result: 'Database write error'});
+                    });
                 });
             }else if(db_type === 'add'){
                 OkaykasuDB.create({
                     okaykasu: JSON.stringify(message)
-                  }).then(() => {res.status(200).json({ result: 'OK'});});
+                  }).then(() => {res.status(200).json({ result: 'OK'});})
+                  .catch(() => {
+                    res.status(500).json({ result: 'Database write error'});
+                });
             }
         })
         .catch((err) => {
@@ -93,12 +105,18 @@ router.post('/',function(req,res){
                 OkaykasuDB.destroy({ truncate: true }).then(() => {
                     OkaykasuDB.create({
                         okaykasu: JSON.stringify(message)
-                      }).then(() => {res.status(200).json({ result: 'OK'});});
+                      }).then(() => {res.status(200).json({ result: 'OK'});})
+                      .catch(() => {
+                        res.status(500).json({ result: 'Database write error'});
+                    });
                 });
             }else if(db_type === 'add'){
                 OkaykasuDB.create({
                     okaykasu: JSON.stringify(message)
-                  }).then(() => {res.status(200).json({ result: 'OK'});});
+                  }).then(() => {res.status(200).json({ result: 'OK'});})
+                  .catch(() => {
+                    res.status(500).json({ result: 'Database write error'});
+                });
             }   
         }).catch((err) => {
             res.status(500).send(err);
@@ -108,12 +126,18 @@ router.post('/',function(req,res){
             OkaykasuDB.destroy({ truncate: true }).then(() => {
                 OkaykasuDB.create({
                     okaykasu: JSON.stringify(message)
-                  }).then(() => {res.status(200).json({ result: 'OK'});});
+                  }).then(() => {res.status(200).json({ result: 'OK'});})
+                  .catch(() => {
+                    res.status(500).json({ result: 'Database write error'});
+                });
             });
         }else if(db_type === 'add'){
             OkaykasuDB.create({
                 okaykasu: JSON.stringify(message)
-              }).then(() => {res.status(200).json({ result: 'OK'});});
+              }).then(() => {res.status(200).json({ result: 'OK'});})
+              .catch(() => {
+                res.status(500).json({ result: 'Database write error'});
+            });
         }
     }
     else{
