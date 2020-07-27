@@ -49,23 +49,21 @@ router.post('/',function(req,res){
         res.status(400).json({ error: 'Invalid request body. "message_type"'});
     }
 
-    if(db_type === 'replace'){
-        OkaykasuDB.destroy({ truncate: true }).then(() => {
-            OkaykasuDB.create({
-                okaykasu: JSON.stringify(message)
-              }).then(() => {});
-        });
-    }else if(db_type === 'add'){
-        OkaykasuDB.create({
-            okaykasu: JSON.stringify(message)
-          }).then(() => {});
-    }
-
     if(send_type === 'push'){
         var to = req.body.to;
         client.pushMessage(to, message)
         .then(() => {
-            res.status(200).json({ result: 'OK'});
+            if(db_type === 'replace'){
+                OkaykasuDB.destroy({ truncate: true }).then(() => {
+                    OkaykasuDB.create({
+                        okaykasu: JSON.stringify(message)
+                      }).then(() => {res.status(200).json({ result: 'OK'});});
+                });
+            }else if(db_type === 'add'){
+                OkaykasuDB.create({
+                    okaykasu: JSON.stringify(message)
+                  }).then(() => {res.status(200).json({ result: 'OK'});});
+            }
         })
         .catch((err) => {
             res.status(500).send(err);
@@ -74,21 +72,49 @@ router.post('/',function(req,res){
         var to = req.body.to;
         client.multicast(to, message)
         .then(() => {
-            res.status(200).json({ result: 'OK'});
+            if(db_type === 'replace'){
+                OkaykasuDB.destroy({ truncate: true }).then(() => {
+                    OkaykasuDB.create({
+                        okaykasu: JSON.stringify(message)
+                      }).then(() => {res.status(200).json({ result: 'OK'});});
+                });
+            }else if(db_type === 'add'){
+                OkaykasuDB.create({
+                    okaykasu: JSON.stringify(message)
+                  }).then(() => {res.status(200).json({ result: 'OK'});});
+            }
         })
         .catch((err) => {
             res.status(500).send(err);
         });
     }else if (send_type === 'broadcast'){
         client.broadcast(message).then(() => {
-            console.log(`finished`)
-            res.status(200).json({ result: 'OK'});
-            
+            if(db_type === 'replace'){
+                OkaykasuDB.destroy({ truncate: true }).then(() => {
+                    OkaykasuDB.create({
+                        okaykasu: JSON.stringify(message)
+                      }).then(() => {res.status(200).json({ result: 'OK'});});
+                });
+            }else if(db_type === 'add'){
+                OkaykasuDB.create({
+                    okaykasu: JSON.stringify(message)
+                  }).then(() => {res.status(200).json({ result: 'OK'});});
+            }   
         }).catch((err) => {
             res.status(500).send(err);
         });
     }else if(send_type === 'none'){
-        res.status(200).json({ result: 'OK'});
+        if(db_type === 'replace'){
+            OkaykasuDB.destroy({ truncate: true }).then(() => {
+                OkaykasuDB.create({
+                    okaykasu: JSON.stringify(message)
+                  }).then(() => {res.status(200).json({ result: 'OK'});});
+            });
+        }else if(db_type === 'add'){
+            OkaykasuDB.create({
+                okaykasu: JSON.stringify(message)
+              }).then(() => {res.status(200).json({ result: 'OK'});});
+        }
     }
     else{
         res.status(400).json({ error: 'Invalid request body. "send_type"'});
