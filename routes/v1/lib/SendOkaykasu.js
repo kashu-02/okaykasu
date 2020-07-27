@@ -87,7 +87,10 @@ router.post('/',function(req,res){
         }).catch((err) => {
             res.status(500).send(err);
         });
-    }else{
+    }else if(send_type === 'none'){
+        res.status(200).json({ result: 'OK'});
+    }
+    else{
         res.status(400).json({ error: 'Invalid request body. "send_type"'});
     }
 
