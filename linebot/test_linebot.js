@@ -82,7 +82,7 @@ exports.test_lineBot = function (req, res) {
           ]
         }).then(okaykasu => {
         for(let i = 0;i < okaykasu.length;i++){
-          client.replyMessage(ev.replyToken, JSON.parse(okaykasu[i].okaykasu));
+          await client.replyMessage(ev.replyToken, JSON.parse(okaykasu[i].okaykasu));
         }
         });
       break;
