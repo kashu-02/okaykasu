@@ -9,6 +9,7 @@ const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
 
 function DeleteChunkRange(){
     const nowday = moment().format("YYYY-MM-DD");
+    console.log(nowday)
     ChunkRangeDB.findAndCountAll({
         attributes: ['date', 'chunkrange'],
         order: [
@@ -17,6 +18,7 @@ function DeleteChunkRange(){
         offset: 0,
         limit: 1
       }).then(chunkrange => {
+          console.log(chunkrange.rows[0].date);
         const chunkday = moment(chunkrange.rows[0].date);
         if(chunkday.isSameOrBefore(nowday)){
             OkaykasuDB.destroy({
