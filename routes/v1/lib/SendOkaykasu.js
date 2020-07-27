@@ -46,7 +46,7 @@ router.post('/',function(req,res){
         message.altText = altText;
         message.contents = contents;
     }else {
-        res.status(400).json({ error: 'Invalid request body. "message_type"'});
+        return res.status(400).json({ error: 'Invalid request body. "message_type"'});
     }
 
     if(db_type === 'replace'){
@@ -65,29 +65,30 @@ router.post('/',function(req,res){
         var to = req.body.to;
         client.pushMessage(to, message)
         .then(() => {
-            res.status(200);
+            return res.status(200);
         })
         .catch((err) => {
-            res.status(500).send(err);
+            return res.status(500).send(err);
         });
     }else if(send_type === 'multicast'){
         var to = req.body.to;
         client.multicast(to, message)
         .then(() => {
-            res.status(200);
+            return res.status(200);
         })
         .catch((err) => {
-            res.status(500).send(err);
+            return res.status(500).send(err);
         });
     }else if (send_type === 'broadcast'){
         client.broadcast(message).then(() => {
             console.log(`finished`)
-            res.status(200);
+            return res.status(200);
+            
         }).catch((err) => {
-            res.status(500).send(err);
+            return res.status(500).send(err);
         });
     }else{
-        res.status(400).json({ error: 'Invalid request body. "send_type"'});
+        return res.status(400).json({ error: 'Invalid request body. "send_type"'});
     }
 
     
