@@ -52,12 +52,12 @@ router.post('/',function(req,res){
     if(db_type === 'replace'){
         OkaykasuDB.destroy({ truncate: true }).then(() => {
             OkaykasuDB.create({
-                okaykasu:message
+                okaykasu: JSON.stringify(message)
               }).then(() => {});
         });
     }else if(db_type === 'add'){
         OkaykasuDB.create({
-            okaykasu:message
+            okaykasu: JSON.stringify(message)
           }).then(() => {});
     }
 
