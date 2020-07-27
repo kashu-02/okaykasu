@@ -20,7 +20,7 @@ const test_lineBot = require('./linebot/test_linebot.js');
 const rikei_lineBot = require('./linebot/rikei_linebot.js');
 const bunkei_lineBot = require('./linebot/bunkei_linebot.js');
 const router = require('./routes/v1/');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 express()
   .use(helmet())
