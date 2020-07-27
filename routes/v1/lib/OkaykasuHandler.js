@@ -72,10 +72,11 @@ router.put('/',function(req,res){
  * DELETE
  */
 router.delete('/',function(req,res){
-    if(!req.body.Id){
+    if(!req.body.Id && !req.query.All){
         res.status(400).json({ error: 'Invalid request body' });
         return false;
-      }
+    }
+if(req.body.Id){
   OkaykasuDB.destroy({
     where: {
       id:req.body.Id
@@ -90,6 +91,19 @@ router.delete('/',function(req,res){
     res.json(okaykasu);
     });
   });
+}
+if(req.query.All === true){
+    OkaykasuDB.destroy().then(() => {
+        OkaykasuDB.findAll({
+          attributes: ['id', 'okaykasu'],
+          order: [
+            ['id', 'ASC']
+          ]
+        }).then(okaykasu => {
+        res.json(okaykasu);
+        });
+      });
+}
 });
 
 module.exports = router;
