@@ -50,7 +50,7 @@ router.post('/',function(req,res){
     }
 
     if(db_type === 'replace'){
-        OkaykasuDB.destroy().then(() => {
+        OkaykasuDB.destroy({ truncate: true }).then(() => {
             OkaykasuDB.create({
                 okaykasu:message
               }).then(() => {});

@@ -93,7 +93,7 @@ if(req.body.Id){
   });
 }
 if(req.query.All === true){
-    OkaykasuDB.destroy().then(() => {
+    OkaykasuDB.destroy({ truncate: true }).then(() => {
         OkaykasuDB.findAll({
           attributes: ['id', 'okaykasu'],
           order: [
