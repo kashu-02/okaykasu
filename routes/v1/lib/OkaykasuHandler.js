@@ -92,7 +92,7 @@ if(req.body.Id){
     });
   });
 }
-if(req.query.All === true){
+if(req.query.All == true){
     OkaykasuDB.destroy({ truncate: true }).then(() => {
         OkaykasuDB.findAll({
           attributes: ['id', 'okaykasu'],
