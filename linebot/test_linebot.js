@@ -64,7 +64,12 @@ exports.test_lineBot = function (req, res) {
    }
    
    async function replyline(ev,destination) {
-    const pro =  await (await client.getProfile(ev.source.userId)).displayName;
+    try{
+      var pro =  await (await client.getProfile(ev.source.userId)).displayName;
+     }catch(e){
+      console.error(e);
+      var pro = "Couldn't get displayName";
+     }
     LineFriend.linefriendupdate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
     switch(ev.message.text){
