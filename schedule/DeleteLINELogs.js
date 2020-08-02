@@ -23,8 +23,8 @@ function main(){
               }).then(findresult => {
                   console.log(JSON.stringify(findresult))
                   console.log(findresult.rows.length)
-                  console.log(findresult[findresult.rows.length - 1])
-                    var lastid = findresult[findresult.rows.length - 1].id;
+                  console.log(findresult.rows[findresult.rows.length - 1])
+                    var lastid = findresult.rows[findresult.rows.length - 1].id;
                     console.log(lastid)
                 });
         }
