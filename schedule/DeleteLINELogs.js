@@ -20,9 +20,9 @@ function main(){
                 order: [
                     ['id', 'ASC']
                   ]
-              }).then(result => {
-                    console.log(JSON.stringify(result))
-                    result.destroy();
+              }).then(findresult => {
+                    console.log(findresult.rows.length)
+                    var length = findresult.rows.length;
                 });
         }
     });
