@@ -16,10 +16,10 @@ main();
 function main(){
     LineBotDB.count().then(dataCount => {
         console.log(`datacount${dataCount}`)
-        if(dataCount >= 30){
+        if(dataCount >= 5000){
             LineBotDB.findAndCountAll({
                 offset: 0,
-                limit: 20,
+                limit: 4000,
                 order: [
                     ['id', 'ASC']
                   ]
