@@ -21,6 +21,7 @@ function main(){
                     ['id', 'ASC']
                   ]
               }).then(findresult => {
+                  console.log(JSON.stringify(findresult))
                     var lastid = findresult[findresult.rows.length - 1].id;
                     console.log(lastid)
                 });
