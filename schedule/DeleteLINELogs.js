@@ -1,5 +1,5 @@
 'use strict';
-const LineBotDB = require('../routes/v1/lib/LineBotDBHandler.js');
+const LineBotDB = require('../routes/v1/lib/LineBotDBjs');
 const moment = require('moment');
   require('moment-timezone');
   moment.tz.setDefault('Asia/Tokyo');
@@ -11,9 +11,9 @@ const moment = require('moment');
 main();
 
 function main(){
-    LineBotDB.findAll().then(dataCount => {
-        console.log(`datacount${dataCount.length}`)
-        if(dataCount.length >= 30){
+    LineBotDB.count().then(dataCount => {
+        console.log(`datacount${dataCount}`)
+        if(dataCount >= 30){
             LineBotDB.findAndCountAll({
                 offset: 0,
                 limit: 20,
