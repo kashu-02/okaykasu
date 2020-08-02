@@ -11,7 +11,7 @@ const moment = require('moment');
 main();
 
 function main(){
-    LineBotDB.count({where: {}}).then(dataCount => {
+    LineBotDB.count({ where: { id: [2, 3, 4] } }).then(dataCount => {
         console.log(`datacount${dataCount}`)
         if(dataCount >= 30){
             LineBotDB.findAndCountAll({
