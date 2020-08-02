@@ -42,7 +42,7 @@ router.post('/',function(req,res){
         message.previewImageUrl = previewImageUrl;
     }else if(message_type === 'flex'){
         const altText = req.body.altText;
-        const contents = JSON.parse(req.body.contents);
+        const contents = req.body.contents;
         message.altText = altText;
         message.contents = contents;
     }else {
