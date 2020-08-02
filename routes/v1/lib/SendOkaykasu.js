@@ -16,6 +16,7 @@ const bunkei_config = {
   channelSecret: process.env.BUNKEI_SECRET_KEY
 }; 
 const OkaykasuDB = require('./OkaykasuDB.js');
+const { EILSEQ } = require('constants');
 
 router.post('/',function(req,res){
     const db_type = req.body.db_type;
@@ -69,6 +70,8 @@ router.post('/',function(req,res){
                   .catch(() => {
                     res.status(500).json({ result: 'Database write error'});
                 });
+            }else if(db_type === 'none'){
+                res.status(200).json({ result: 'OK'});
             }
         })
         .catch((err) => {
@@ -94,6 +97,8 @@ router.post('/',function(req,res){
                   .catch(() => {
                     res.status(500).json({ result: 'Database write error'});
                 });
+            }else if(db_type === 'none'){
+                res.status(200).json({ result: 'OK'});
             }
         })
         .catch((err) => {
@@ -117,7 +122,9 @@ router.post('/',function(req,res){
                   .catch(() => {
                     res.status(500).json({ result: 'Database write error'});
                 });
-            }   
+            } else if(db_type === 'none'){
+                res.status(200).json({ result: 'OK'});
+            }  
         }).catch((err) => {
             res.status(500).send(err);
         });
@@ -138,6 +145,8 @@ router.post('/',function(req,res){
               .catch(() => {
                 res.status(500).json({ result: 'Database write error'});
             });
+        }else if(db_type === 'none'){
+            res.status(200).json({ result: 'OK'});
         }
     }
     else{

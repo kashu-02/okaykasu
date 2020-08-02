@@ -12,6 +12,7 @@ main();
 
 function main(){
     LineBotDB.count({where: {}}).then(dataCount => {
+        console.log(`datacount${dataCount}`)
         if(dataCount >= 30){
             LineBotDB.findAndCountAll({
                 offset: 0,
