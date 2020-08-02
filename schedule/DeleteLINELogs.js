@@ -1,5 +1,5 @@
 'use strict';
-const LineBotDB = require('../routes/v1/lib/LineBotDBjs');
+const LineBotDB = require('../routes/v1/lib/LineBotDB.js');
 const moment = require('moment');
   require('moment-timezone');
   moment.tz.setDefault('Asia/Tokyo');
