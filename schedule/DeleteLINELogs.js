@@ -21,6 +21,7 @@ function main(){
                     ['id', 'ASC']
                   ]
               }).then(result => {
+                  console.log(JSON.stringify(result))
               result.destroy();
                 });
         }
