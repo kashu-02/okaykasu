@@ -22,7 +22,7 @@ function main(){
                   ]
               }).then(result => {
                     console.log(JSON.stringify(result))
-                    result.rows.destroy();
+                    result.destroy();
                 });
         }
     });
