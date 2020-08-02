@@ -7,6 +7,9 @@ const moment = require('moment');
     weekdays: ["日曜日","月曜日","火曜日","水曜日","木曜日","金曜日","土曜日"],
     weekdaysShort: ["日","月","火","水","木","金","土"],
 });
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 
 main();
 
@@ -21,11 +24,15 @@ function main(){
                     ['id', 'ASC']
                   ]
               }).then(findresult => {
-                  console.log(JSON.stringify(findresult))
-                  console.log(findresult.rows.length)
-                  console.log(findresult.rows[findresult.rows.length - 1])
                     var lastid = findresult.rows[findresult.rows.length - 1].id;
-                    console.log(lastid)
+                    console.log(lastid);
+                    LineBotDB.destroy({
+                        where: {
+                          id: {
+                            [Op.lte]: lastid
+                          }
+                        }
+                      }).then(()=> {});
                 });
         }
     });
