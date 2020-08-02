@@ -21,8 +21,8 @@ function main(){
                     ['id', 'ASC']
                   ]
               }).then(findresult => {
-                    console.log(findresult.rows.length)
-                    var length = findresult.rows.length;
+                    var lastid = findresult[findresult.rows.length - 1].id;
+                    console.log(lastid)
                 });
         }
     });
