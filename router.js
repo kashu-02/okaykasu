@@ -19,8 +19,10 @@ const bunkei_config = {
 const test_lineBot = require('./linebot/test_linebot.js');
 const rikei_lineBot = require('./linebot/rikei_linebot.js');
 const bunkei_lineBot = require('./linebot/bunkei_linebot.js');
-const router = require('./routes/v1/');
+const apirouter = require('./routes/v1/');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const googleauth = require('./routes/auth/auth.js');
 
 express()
   .use(helmet())
@@ -29,10 +31,11 @@ express()
   .post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
+  .use(cookieParser())
   .use(express.static(path.join(__dirname, "public")))
-  .use('/api/v1/', router)
+  .use(passport.initialize())
+  .use('/api/v1/', apirouter)
+  .use('/auth', googleauth)
   .set("views", path.join(__dirname, "views"))
   .get("/", (req, res) => res.render("pages/index"))
-  .get("/g/", (req, res) => res.json({ method: "こんにちは、getさん" }))
-  .post("/p/", (req, res) => res.json({ method: "こんにちは、postさん" })) 
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
