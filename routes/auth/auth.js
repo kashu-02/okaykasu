@@ -20,11 +20,11 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLECALLBACKURL
 }, function (accessToken, refreshToken, profile, done) {
     if (profile) {
-      if(profile.emails[0].value.match(`/${matchdomain}/`)){
+      //if(profile.emails[0].value.match(`/${matchdomain}/`)){
         return done(null, profile);
-      }else{
-        return done(null, false);
-      }
+      //}else{
+       // return done(null, false);
+      //}
     }
     else {
         return done(null, false);
