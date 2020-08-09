@@ -17,8 +17,7 @@ function extractProfile(profile) {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLECLIENTID,
     clientSecret: process.env.GOOGLECLIENTSECRET,
-    callbackURL: process.env.GOOGLECALLBACKURL,
-    accessType: 'offline',
+    callbackURL: process.env.GOOGLECALLBACKURL
 }, function (accessToken, refreshToken, profile, done) {
     if (profile) {
       if(profile.emails[0].value.match(`/${matchdomain}/`)){
@@ -35,7 +34,10 @@ passport.use(new GoogleStrategy({
 const router = express.Router();
 
 router.get('/login',
-    passport.authenticate('google', { scope: ['email', 'profile'], session: false, }),
+    passport.authenticate('google', { scope: [
+        'https://www.googleapis.com/auth/userinfo.profile',
+        'https://www.googleapis.com/auth/userinfo.email'
+  ], session: false, }),
 );
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
