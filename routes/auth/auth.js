@@ -1,47 +1,64 @@
-const express = require("express");
+// Googleログイン認証設定
+const express = require('express');
+const app = express();
 const passport = require('passport');
+app.use(passport.initialize());
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const matchdomain = process.env.MATCHDOMAIN;
-function extractProfile(profile) {
-    let imageUrl = '';
-    if (profile.photos && profile.photos.length) {
-        imageUrl = profile.photos[0].value;
-    }
-    return {
-        id: profile.id,
-        displayName: profile.displayName,
-        image: imageUrl,
-    };
-}
 
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLECLIENTID,
-    clientSecret: process.env.GOOGLECLIENTSECRET,
-    callbackURL: process.env.GOOGLECALLBACKURL,
-    passReqToCallback: true
-}, function (accessToken, refreshToken, profile, done) {
-    if (profile) {
-      //if(profile.emails[0].value.match(`/${matchdomain}/`)){
-        return done(null, profile);
-      //}else{
-       // return done(null, false);
-      //}
-    }
-    else {
-        return done(null, false);
-    }
+
+// セッションを使用
+const session = require('express-session');
+
+app.use(session({
+　　secret: 'secret',
+　　resave: false,
+　　saveUninitialized: true
 }));
 
-const router = express.Router();
+app.use(passport.session());
 
-router.get('/login',
-    passport.authenticate('google', { scope: [
-        'https://www.googleapis.com/auth/userinfo.profile',
-        'https://www.googleapis.com/auth/userinfo.email'
-  ], session: false, }),
-);
-
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login'}), (req, res) => {
-    res.send(req.user.emails[0].value);
+passport.serializeUser(function (user, done) {
+      done(null, user);
 });
-module.exports = router;
+
+passport.deserializeUser(function (user, done) {
+     done(null, user);
+});
+
+//Googleログイン認証
+passport.use(new GoogleStrategy({
+        clientID: process.env.GOOGLECLIENTID,
+        clientSecret: process.env.GOOGLECLIENTSECRET,
+        callbackURL: '/auth/google/callback'
+    },
+    function (accessToken, refreshToken, profile, done) {
+        if (profile) {
+             return done(null, profile);
+        }
+        else {
+             return done(null, false);
+        }
+     }
+));
+
+
+//Googleログイン認証（スコープ設定）へ
+app.get('/auth/google', passport.authenticate('google', {
+      scope: [
+            'https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email'
+      ]
+}));
+
+
+//Googleログインコールバック
+app.get('/auth/google/callback',
+      passport.authenticate('google',
+     {
+          failureRedirect: '/login', // 失敗したときの遷移先
+     }),
+     function (req, res) {
+         //emailの値を表示
+         console.log(req.user.emails[0].value);
+     }
+);
