@@ -5,25 +5,6 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
-// セッションを使用
-const session = require('express-session');
-
-app.use(session({
-　　secret: 'secret',
-　　resave: false,
-　　saveUninitialized: true
-}));
-
-app.use(passport.session());
-
-passport.serializeUser(function (user, done) {
-      done(null, user);
-});
-
-passport.deserializeUser(function (user, done) {
-     done(null, user);
-});
-
 //Googleログイン認証
 passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLECLIENTID,

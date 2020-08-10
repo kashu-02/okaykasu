@@ -24,6 +24,26 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const googleauth = require('./routes/auth/auth.js');
 
+// セッションを使用
+const session = require('express-session');
+
+app.use(session({
+　　secret: 'secret',
+　　resave: false,
+　　saveUninitialized: true
+}));
+
+app.use(passport.session());
+
+passport.serializeUser(function (user, done) {
+      done(null, user);
+});
+
+passport.deserializeUser(function (user, done) {
+     done(null, user);
+});
+
+
 express()
   .use(helmet())
   .post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot.test_lineBot(req, res))
