@@ -27,38 +27,34 @@ const googleauth = require('./routes/auth/auth.js');
 
 // セッションを使用
 const session = require('express-session');
+
+app.use(helmet())
+app.post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot.test_lineBot(req, res))
+app.post("/rikei_hook/", line.middleware(rikei_config), (req, res) => rikei_lineBot.rikei_lineBot(req, res))
+app.post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+//app.use(cookieParser())
+app.use(express.static(path.join(__dirname, "public")));
+app.use('/api/v1/', apirouter);
 app.use(session({
-　　secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false 
-}));
+  　　secret: process.env.COOKIE_SECRET,
+      resave: false,
+      saveUninitialized: false 
+  }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 passport.serializeUser(function (user, done) {
       done(null, user);
 });
-
 passport.deserializeUser(function (user, done) {
      done(null, user);
 });
-
-
-express()
-  .use(helmet())
-  .post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot.test_lineBot(req, res))
-  .post("/rikei_hook/", line.middleware(rikei_config), (req, res) => rikei_lineBot.rikei_lineBot(req, res))
-  .post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
-  .use(bodyParser.urlencoded({ extended: true }))
-  .use(bodyParser.json())
-  //.use(cookieParser())
-  .use(express.static(path.join(__dirname, "public")))
-  .use('/api/v1/', apirouter)
-  .use('/auth', googleauth)
-  //.set("views", path.join(__dirname, "views"))
-  .set('view engine', 'pug')
-  .get("/",isAuthenticated, (req, res) => res.render("index"))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`))
+app.use('/auth', googleauth);
+//app.set("views", path.join(__dirname, "views"));
+app.set('view engine', 'pug');
+app.get("/",isAuthenticated, (req, res) => res.render("index"));
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   function isAuthenticated(req, res, next){
     if (req.isAuthenticated()) {  // 認証済
