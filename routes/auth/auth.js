@@ -40,7 +40,7 @@ router.get('/login',
   ], session: false, }),
 );
 
-router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login'}), (req, res) => {
     res.send(req.user.emails[0].value);
 });
 module.exports = router;
