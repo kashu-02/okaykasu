@@ -23,7 +23,7 @@ passport.use(new GoogleStrategy({
 
 
 //Googleログイン認証（スコープ設定）へ
-router.get('/auth/google', passport.authenticate('google', {
+router.get('/google', passport.authenticate('google', {
       scope: [
             'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email'
@@ -32,7 +32,7 @@ router.get('/auth/google', passport.authenticate('google', {
 
 
 //Googleログインコールバック
-router.get('/auth/google/callback',
+router.get('/google/callback',
       passport.authenticate('google',
      {
           failureRedirect: '/login', // 失敗したときの遷移先
