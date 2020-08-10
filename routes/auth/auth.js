@@ -17,7 +17,8 @@ function extractProfile(profile) {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLECLIENTID,
     clientSecret: process.env.GOOGLECLIENTSECRET,
-    callbackURL: process.env.GOOGLECALLBACKURL
+    callbackURL: process.env.GOOGLECALLBACKURL,
+    passReqToCallback: true
 }, function (accessToken, refreshToken, profile, done) {
     if (profile) {
       //if(profile.emails[0].value.match(`/${matchdomain}/`)){
