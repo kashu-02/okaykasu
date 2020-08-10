@@ -27,12 +27,14 @@ const googleauth = require('./routes/auth/auth.js');
 
 // セッションを使用
 const session = require('express-session');
-/*
 app.use(session({
-　　secret: 'okaykasusecretsecret'
+　　secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false 
 }));
+app.use(passport.initialize());
 app.use(passport.session());
-*/
+
 passport.serializeUser(function (user, done) {
       done(null, user);
 });
@@ -51,7 +53,6 @@ express()
   .use(bodyParser.json())
   //.use(cookieParser())
   .use(express.static(path.join(__dirname, "public")))
-  .use(passport.initialize())
   .use('/api/v1/', apirouter)
   .use('/auth', googleauth)
   //.set("views", path.join(__dirname, "views"))
