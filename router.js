@@ -59,7 +59,7 @@ express()
   .use('/auth', googleauth)
   //.set("views", path.join(__dirname, "views"))
   .set('view engine', 'pug')
-  .get("/",isAuthenticated, (req, res) => res.render("index"))
+  .get("/", (req, res) => res.render("index"))
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
   function isAuthenticated(req, res, next){
