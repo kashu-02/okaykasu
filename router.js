@@ -59,5 +59,14 @@ express()
   .use('/auth', googleauth)
   //.set("views", path.join(__dirname, "views"))
   .set('view engine', 'pug')
-  .get("/", (req, res) => res.render("index"))
+  .get("/",isAuthenticated, (req, res) => res.render("index"))
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
+
+  function isAuthenticated(req, res, next){
+    if (req.isAuthenticated()) {  // 認証済
+        return next();
+    }
+    else {  // 認証されていない
+        res.redirect('/auth/google');  // ログイン画面に遷移
+    }
+}

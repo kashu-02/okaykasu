@@ -40,6 +40,7 @@ router.get('/google/callback',
      function (req, res) {
          //emailの値を表示
          console.log(req.user.emails[0].value);
+         res.redirect('/');
      }
 );
 
