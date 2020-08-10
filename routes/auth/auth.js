@@ -35,7 +35,7 @@ const router = express.Router();
 
 router.get('/login',
     passport.authenticate('google', { scope: [
-        'https://www.googleapis.com/auth/userinfo.profile',
+        //'https://www.googleapis.com/auth/userinfo.profile',
         'https://www.googleapis.com/auth/userinfo.email'
   ], session: false, }),
 );
