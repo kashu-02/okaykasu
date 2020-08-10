@@ -53,7 +53,7 @@ passport.deserializeUser(function (user, done) {
 app.use('/auth', googleauth);
 //app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'pug');
-app.get("/",isAuthenticated, (req, res) => res.render("index"));
+app.get("/",isAuthenticated, (req, res) => res.render('index', {email: req.user.emails[0].value }));
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   function isAuthenticated(req, res, next){
