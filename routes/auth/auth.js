@@ -9,7 +9,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLECLIENTID,
         clientSecret: process.env.GOOGLECLIENTSECRET,
-        callbackURL: '/auth/google/callback'
+        callbackURL: 'https://okaykasu.heroku.com/auth/google/callback'
     },
     function (accessToken, refreshToken, profile, done) {
         if (profile) {
