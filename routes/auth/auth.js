@@ -1,8 +1,7 @@
 // Googleログイン認証設定
 const express = require('express');
-const app = express();
+const router = express.Router();
 const passport = require('passport');
-app.use(passport.initialize());
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
@@ -43,7 +42,7 @@ passport.use(new GoogleStrategy({
 
 
 //Googleログイン認証（スコープ設定）へ
-app.get('/auth/google', passport.authenticate('google', {
+router.get('/auth/google', passport.authenticate('google', {
       scope: [
             'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email'
@@ -52,7 +51,7 @@ app.get('/auth/google', passport.authenticate('google', {
 
 
 //Googleログインコールバック
-app.get('/auth/google/callback',
+router.get('/auth/google/callback',
       passport.authenticate('google',
      {
           failureRedirect: '/login', // 失敗したときの遷移先
@@ -62,3 +61,5 @@ app.get('/auth/google/callback',
          console.log(req.user.emails[0].value);
      }
 );
+
+module.exports = router;
