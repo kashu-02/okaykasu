@@ -29,11 +29,8 @@ const googleauth = require('./routes/auth/auth.js');
 const session = require('express-session');
 
 app.use(session({
-　　secret: 'secret',
-　　resave: false,
-　　saveUninitialized: true
+　　secret: 'okaykasusecretsecret'
 }));
-
 app.use(passport.session());
 
 passport.serializeUser(function (user, done) {
@@ -59,7 +56,7 @@ express()
   .use('/auth', googleauth)
   //.set("views", path.join(__dirname, "views"))
   .set('view engine', 'pug')
-  .get("/", (req, res) => res.render("index"))
+  .get("/",isAuthenticated, (req, res) => res.render("index"))
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
   function isAuthenticated(req, res, next){
