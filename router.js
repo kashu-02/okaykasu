@@ -27,12 +27,12 @@ const googleauth = require('./routes/auth/auth.js');
 
 // セッションを使用
 const session = require('express-session');
-
+/*
 app.use(session({
 　　secret: 'okaykasusecretsecret'
 }));
 app.use(passport.session());
-
+*/
 passport.serializeUser(function (user, done) {
       done(null, user);
 });
@@ -61,9 +61,11 @@ express()
 
   function isAuthenticated(req, res, next){
     if (req.isAuthenticated()) {  // 認証済
+      console.log(`isAuth${req.isAuthenticated()}`);
         return next();
     }
     else {  // 認証されていない
+      console.log(`isAuth${req.isAuthenticated()}`);
         res.redirect('/auth/google');  // ログイン画面に遷移
     }
 }
