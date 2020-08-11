@@ -7,7 +7,16 @@ html(lang="ja")
     h1 おk粕　Web版
     h1 DEBUG MODE
     div
-    if user
-      a(href="/logout") #{user.username} をログアウト
-    else
-      a(href="/login") ログイン
+    table
+      tr
+        td chunkrange.date
+        td chunkrange.chunkrange
+    table
+      tr
+        td nextstagerange.date
+        td nextstagerange.nextstagerange
+
+    div
+    if okaykasudata
+      a(href="/auth/google") ログイン
+    
