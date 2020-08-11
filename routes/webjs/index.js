@@ -1,8 +1,8 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-const ChunkRange = require('../v1/lib/ChunkRangeDB');
-const NextStageRange = require('../v1/lib/NextStageRangeDB');
+const ChunkRangeDB = require('../v1/lib/ChunkRangeDB');
+const NextStageRangeDB = require('../v1/lib/NextStageRangeDB');
 const OkaykasuDB = require('../v1/lib/OkaykasuDB');
 
 /* GET home page. */
