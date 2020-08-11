@@ -27,12 +27,13 @@ router.get('/', (req, res, next) => {
       ['id', 'ASC']
     ]
   })]).then(function(results){
+    const okaykasucontent = JSON.parse(results[2][0].okaykasu)　
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
     res.render('index', { 
       chunkrange: results[0].rows[0],
       nextstagerange: results[1].rows[0],
-      okaykasudata: JSON.parse(results[2][0].okaykasu)　
+      okaykasudata: okaykasucontenthandler(okaykasucontent)
     });
   }else{
     res.render('index', { 
@@ -51,3 +52,7 @@ router.get('/', (req, res, next) => {
   });
 
 module.exports = router;
+
+function okaykasucontenthandler(okaykasucontent) {
+ return okaykasucontent;
+}

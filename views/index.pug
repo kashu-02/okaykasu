@@ -7,16 +7,19 @@ html(lang="ja")
     h1 おk粕　Web版
     h1 DEBUG MODE
     div
-    table
-      tr
-        td #{chunkrange.date}
-        td #{chunkrange.chunkrange}
-    table
-      tr
-        td #{nextstagerange.date}
-        td #{nextstagerange.nextstagerange}
+      table
+        tr
+          td #{chunkrange.date}
+          td #{chunkrange.chunkrange}
+      table
+        tr
+          td #{nextstagerange.date}
+          td #{nextstagerange.nextstagerange}
 
     div
-    unless okaykasudata
-      a(href="/auth/google") ログイン
+      unless okaykasudata
+        p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
+        a(href="/auth/google") ログイン
+      else
+        p #{okaykasudata}
     
