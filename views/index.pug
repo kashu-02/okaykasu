@@ -17,6 +17,6 @@ html(lang="ja")
         td #{nextstagerange.nextstagerange}
 
     div
-    if !okaykasudata
+    unless #{okaykasudata}
       a(href="/auth/google") ログイン
     
