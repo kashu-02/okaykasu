@@ -27,12 +27,19 @@ router.get('/', (req, res, next) => {
       ['id', 'ASC']
     ]
   })]).then(function(results){
+    if(req.user){
     if(req.user.emails[0].value.match(`/${matchdomain}/`)){　//ドメイン認証
     res.render('index', { 
       chunkrange: results[0].rows[0],
       nextstagerange: results[1].rows[0],
       okaykasudata: JSON.parse(results[2][0].okaykasu)　
     });
+  }else{
+    res.render('index', { 
+      chunkrange: results[0].rows[0],
+      nextstagerange: results[1].rows[0]
+    });
+  }
   }else{
     res.render('index', { 
       chunkrange: results[0].rows[0],
