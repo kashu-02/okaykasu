@@ -1,3 +1,8 @@
+/**
+ * チャンク範囲データベース設定
+ */
+
+
 'use strict';
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
@@ -11,15 +16,15 @@ const sequelize = new Sequelize(
     timezone: '+09:00'
   });
 const ChunkRangeDB = sequelize.define('chunk_ranges', {
-  id: {
+  id: {// id
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
-  date: {
+  date: {　//チャンク日時　YYYY-MM-DD　String
     type: Sequelize.STRING
   },
-  chunkrange: {
+  chunkrange: {// チャンク範囲　String
     type: Sequelize.STRING
   }});
 

@@ -1,3 +1,7 @@
+/**
+ * LINEBotのDB処理
+ */
+
 'use strict';
 const LineBotDB = require('./LineBotDB.js');
 const express = require('express');
@@ -7,8 +11,12 @@ const Op = Sequelize.Op;
 const moment = require('moment');
 require('moment-timezone');
 moment.tz.setDefault('Asia/Tokyo');
+
 /**
  * CREATE
+ * @param {*} ev LINEから渡されたイベント
+ * @param {*} destination 受信すべきBotのUserId
+ * @param {*} pro ユーザープロフィール
  */
 const linebotcreate = function(ev,destination,pro){
   if(!pro){
@@ -32,9 +40,36 @@ LineBotDB.create({
 
 /**
  * READ
+ * 
+ * URL : https://okaykasu.herokuapp.com/api/v1/LineBot/
+ * Authorization: required
+ * RequestQuery: page ページ番号(Optional)
+ *               perPage 1ページあたりの表示件数(Optional)
+ * METHOD: GET
+ * Return: 200 {JSON Array} 登録されているチャンク範囲
+ *       ex) [
+ *            {
+ *              date:2020-08-24,
+ *              chunkrange: pp.102-111
+ *             },
+ *            {
+ *              date:2020-08-25,
+ *              chunkrange: pp.102-117
+ *            },
+ *                ...
+ *           ]
+ *         latestchunkまたはhunkdate指定がある場合
+ * 　　　　200　{JSON} 
+ *       ex) {
+ *              date:2020-08-24,
+ *              chunkrange: pp.102-111
+ *             }
  */
-router.get('/:bot_destination/:source_type/:UserorGroupId',function(req,res){
-  switch(req.params.bot_destination){
+router.get('/',function(req,res){
+  const page = req.query.page || 1;
+  const perPage = req.query.perpage || 10;
+  /* 
+  switch(req.query.bot_destination){
     case "test":
       var bot_destination = "U0f16903d7c2436ebb99c2459124fd40d";
       break;
@@ -45,18 +80,15 @@ router.get('/:bot_destination/:source_type/:UserorGroupId',function(req,res){
         var bot_destination = "U0f141a37a3b6b606b01b5696f916ea2b";
         break;  
     default:
-        res.status(400).json({ error: 'Invalid bot_destination' });
     break;
   }
-  const source_type = req.params.source_type;
-  const UserorGroupId = req.params.UserorGroupId;
+  const source_type = req.query.source_type;
+  const UserorGroupId = req.query.UserorGroupId;
   console.log(`source_type: ${source_type}`);
   console.log(`UserorGroupId: ${UserorGroupId}`);
-  if(!source_type || !UserorGroupId){
-    res.status(400).json({ error: 'Invalid source_type or UserorGroupId' });
-  }
   const page = req.query.page || 1;
   const perPage = req.query.perpage || 10;
+  
   if(source_type === "user"){
     LineBotDB.findAndCountAll({
       where: {
@@ -93,7 +125,18 @@ router.get('/:bot_destination/:source_type/:UserorGroupId',function(req,res){
       res.json(res_json);
     });
   }
-  
+  */
+ LineBotDB.findAndCountAll({
+  where: {},
+  offset: (page - 1) * perPage,
+  limit: perPage
+}).then(userresult => {
+  const res_json = {
+    page: page,
+    line: userresult.rows
+  }
+  res.json(res_json);
+});
 });
 
 
