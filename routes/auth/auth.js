@@ -38,9 +38,9 @@ router.get('/google/callback',
           failureRedirect: '/login', // 失敗したときの遷移先
      }),
      function (req, res) {
-         //emailの値を表示
+         //emailの値をログ表示
          console.log(req.user.emails[0].value);
-         if(req.user.emails[0].value.match(`/${matchdomain}/`)){
+         if(req.user.emails[0].value.match(`/${matchdomain}/`)){　//ドメイン認証
             res.redirect('/');
          }else{
             req.logout();
