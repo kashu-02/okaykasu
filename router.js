@@ -24,7 +24,7 @@ const apirouter = require('./routes/v1/');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const googleauth = require('./routes/auth/auth.js');
-
+const indexRouter = require('./routes/webjs/index');
 // セッションを使用
 const session = require('express-session');
 
@@ -53,16 +53,7 @@ passport.deserializeUser(function (user, done) {
 app.use('/auth', googleauth);
 //app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'pug');
-app.get("/",isAuthenticated, (req, res) => res.render('index', {email: req.user.emails[0].value }));
+app.use('/',indexRouter);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-  function isAuthenticated(req, res, next){
-    if (req.isAuthenticated()) {  // 認証済
-      console.log(`isAuth${req.isAuthenticated()}`);
-        return next();
-    }
-    else {  // 認証されていない
-      console.log(`isAuth${req.isAuthenticated()}`);
-        res.redirect('/auth/google');  // ログイン画面に遷移
-    }
-}
+  

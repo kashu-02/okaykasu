@@ -4,5 +4,10 @@ html(lang="ja")
     meta(charset="UTF-8")
     title おk粕　Web版
   body
-    h1 TEST
-    p #{email}
+    h1 おk粕　Web版
+    h1 DEBUG MODE
+    div
+    if user
+      a(href="/logout") #{user.username} をログアウト
+    else
+      a(href="/login") ログイン
