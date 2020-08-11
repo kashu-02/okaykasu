@@ -46,6 +46,7 @@ router.get('/', (req, res, next) => {
       nextstagerange: results[1].rows[0]
     });
   }
+  console.log(req.user.emails[0].value);
 });
   });
 
