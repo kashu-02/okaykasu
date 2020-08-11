@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
+const matchdomain = process.env.MATCHDOMAIN;
 
 //Googleログイン認証
 passport.use(new GoogleStrategy({
@@ -40,7 +40,7 @@ router.get('/google/callback',
      function (req, res) {
          //emailの値を表示
          console.log(req.user.emails[0].value);
-         if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){
+         if(req.user.emails[0].value.match(`/${matchdomain}/`)){
             res.redirect('/');
          }else{
             req.logout();
