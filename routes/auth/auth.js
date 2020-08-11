@@ -35,7 +35,7 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
       passport.authenticate('google',
      {
-          failureRedirect: '/login', // 失敗したときの遷移先
+          failureRedirect: '/auth/google', // 失敗したときの遷移先
      }),
      function (req, res) {
          //emailの値をログ表示
@@ -44,7 +44,7 @@ router.get('/google/callback',
             res.redirect('/');
          }else{
             req.logout();
-            res.redirect('/');
+            res.redirect('/auth/google');
          }
          
      }
