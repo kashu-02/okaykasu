@@ -127,6 +127,9 @@ router.get('/',function(req,res){
   }
   */
  LineBotDB.findAndCountAll({
+  order: [
+    ['id', 'DESC']
+  ],
   where: {},
   offset: (page - 1) * perPage,
   limit: perPage
