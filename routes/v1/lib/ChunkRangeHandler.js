@@ -96,13 +96,14 @@ router.get('/',function(req,res){
       res.json(chunkrange.rows[0]);
     });
   }else if(req.query.chunkdate){
+    const chunkdate = moment(req.query.chunkdate).format('YYYY-MM-DD');
     ChunkRangeDB.findAll({
       attributes: ['date', 'chunkrange'],
       order: [
         ['date', 'ASC']
       ],
       where:{
-        date: req.query.chunkdate
+        date: chunkdate
       }
     }).then(chunkrange => {
     res.json(chunkrange[0]);
