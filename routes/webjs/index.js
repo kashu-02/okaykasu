@@ -56,7 +56,7 @@ module.exports = router;
 function okaykasucontenthandler(okaykasucontent) {
   let webcontent = [];
   for(let i = 0;i < okaykasucontent.length;i++){
-    let linemessage = JSON.stringify(okaykasucontent[i].okaykasu);
+    let linemessage = JSON.parse(okaykasucontent[i].okaykasu);
   switch(linemessage.type){
     case 'flex':
       webcontent.push(okaykasuFlex(linemessage));
@@ -74,6 +74,7 @@ function okaykasuFlex(linemessage){
   let returnwebmessage
   if(linemessage.contents.type == 'carousel'){
     for(let i = 0;i < linemessage.contents.contents.length;i++){
+      console.log(linemessage.contents.contents[i].header.contents[0].text)
         returnwebmessage += `<${linemessage.contents.contents[i].header.contents[0].text}> \n ${linemessage.contents.contents[i].body.contents[0].text}`
     }
   }
