@@ -21,7 +21,6 @@ html(lang="ja")
         p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
         a(href="/auth/google") ログイン
       else
-        - for(let i = 1;i < okaykasudata.length;i++)
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
             if okaykasudataum.escape === none
