@@ -61,8 +61,10 @@ function okaykasucontenthandler(okaykasucontent) {
       webcontent.push(okaykasuFlex(linemessage));
       break;
     case 'text':
+      webcontent.push(linemessage.text);
       break;
     case 'image':
+      webcontent.push(`<img src="${linemessage.originalContentUrl}" width="50%" height="50%"`)
       break;
   }
 }
