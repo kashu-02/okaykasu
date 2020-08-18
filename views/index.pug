@@ -22,6 +22,6 @@ html(lang="ja")
         a(href="/auth/google") ログイン
       else
         each okaykasudatum in okaykasudata
-        - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
+          - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           p !{okaykasudatum.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
     
