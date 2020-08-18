@@ -54,5 +54,5 @@ router.get('/', (req, res, next) => {
 module.exports = router;
 
 function okaykasucontenthandler(okaykasucontent) {
- return okaykasucontent;
+ return JSON.stringify(okaykasucontent);
 }
