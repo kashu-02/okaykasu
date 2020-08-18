@@ -24,6 +24,6 @@ html(lang="ja")
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
             if okaykasudatum.type === 'image'
-              img(src=okaykasudatum.linemessage width="50%" height="50%")
+              img(src=okaykasudatum.linemessage)
             else if okaykasudatum.type === 'text'
               p !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
