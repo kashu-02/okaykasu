@@ -23,7 +23,7 @@ html(lang="ja")
       else
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
-            if okaykasudataum.escape === none
-              !{okaykasudatum.linemessage}
-            else if okaykasudatum.escape === yes
+            if okaykasudataum.type === image
+              img(src=okaykasudatum.linemessage width="50%" height="50%")
+            else if okaykasudatum.type === text
               p !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
