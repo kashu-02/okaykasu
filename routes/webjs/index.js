@@ -4,6 +4,7 @@ const router = express.Router();
 const ChunkRangeDB = require('../v1/lib/ChunkRangeDB');
 const NextStageRangeDB = require('../v1/lib/NextStageRangeDB');
 const OkaykasuDB = require('../v1/lib/OkaykasuDB');
+const { noExtendLeft } = require('sequelize/types/lib/operators');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -58,13 +59,19 @@ function okaykasucontenthandler(okaykasucontent) {
     let linemessage = JSON.parse(okaykasucontent[i].okaykasu);
   switch(linemessage.type){
     case 'flex':
-      webcontent.push(okaykasuFlex(linemessage));
+      webcontent.push({escape: yes,
+                       linemessage: okaykasuFlex(linemessage)
+                      });
       break;
     case 'text':
-      webcontent.push(linemessage.text);
+      webcontent.push({escape: yes,
+                      linemessage: linemessage.text
+                      });
       break;
     case 'image':
-      webcontent.push(`<img src="${linemessage.originalContentUrl}" width="50%" height="50%">`)
+      webcontent.push({escape: none,
+                      linemessage: `<img src="${linemessage.originalContentUrl}" width="50%" height="50%">`
+                      })
       break;
   }
 }
