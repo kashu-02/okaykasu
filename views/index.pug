@@ -24,6 +24,6 @@ html(lang="ja")
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
             if okaykasudataum.escape === none
-            !{okaykasudatum.linemessage}
-          else if okaykasudatum.escape === yes
-            p !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
+              !{okaykasudatum.linemessage}
+            else if okaykasudatum.escape === yes
+              p !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
