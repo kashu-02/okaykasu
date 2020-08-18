@@ -33,8 +33,7 @@ router.get('/', (req, res, next) => {
     res.render('index', { 
       chunkrange: results[0].rows[0],
       nextstagerange: results[1].rows[0],
-      //okaykasudata: okaykasucontenthandler(okaykasucontent)
-      okaykasudata: JSON.stringify(okaykasucontent)
+      okaykasudata: JSON.stringify(okaykasucontenthandler(okaykasucontent))
     });
   }else{
     res.render('index', { 
@@ -55,19 +54,28 @@ router.get('/', (req, res, next) => {
 module.exports = router;
 
 function okaykasucontenthandler(okaykasucontent) {
-  switch(okaykasucontent.type){
+  let webcontent = [];
+  for(let i = 0;i < okaykasucontent.length;i++){
+    let linemessage = JSON.stringify(okaykasucontent[i].okaykasu);
+  switch(linemessage.type){
     case 'flex':
-      okaykasuFlex(okaykasucontent);
+      webcontent.push(okaykasuFlex(linemessage));
       break;
     case 'text':
       break;
     case 'image':
       break;
-
   }
- return ;
+}
+ return webcontent;
 }
 
-function okaykasuFlex(okaykasucontent){
-
+function okaykasuFlex(linemessage){
+  let returnwebmessage
+  if(linemessage.contents.type == 'carousel'){
+    for(let i = 0;i < linemessage.contents.contents.length;i++){
+        returnwebmessage += `<${linemessage.contents.contents[i].header.contents[0].text}> \n ${linemessage.contents.contents[i].body.contents[0].text}`
+    }
+  }
+return returnwebmessage;
 }
