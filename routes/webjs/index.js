@@ -74,7 +74,6 @@ function okaykasuFlex(linemessage){
   let returnwebmessage
   if(linemessage.contents.type == 'carousel'){
     for(let i = 0;i < linemessage.contents.contents.length;i++){
-      console.log(linemessage.contents.contents[i].header.contents[0].text)
         returnwebmessage += `<${linemessage.contents.contents[i].header.contents[0].text}> \n ${linemessage.contents.contents[i].body.contents[0].text}`
     }
   }
