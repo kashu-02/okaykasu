@@ -33,7 +33,7 @@ router.get('/', (req, res, next) => {
     res.render('index', { 
       chunkrange: results[0].rows[0],
       nextstagerange: results[1].rows[0],
-      okaykasudata: JSON.stringify(okaykasucontenthandler(okaykasucontent))
+      okaykasudata: okaykasucontenthandler(okaykasucontent)
     });
   }else{
     res.render('index', { 
