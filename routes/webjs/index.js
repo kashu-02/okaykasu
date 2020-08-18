@@ -22,18 +22,19 @@ router.get('/', (req, res, next) => {
     offset: 0,
     limit: 1
   }),OkaykasuDB.findAll({
-    attributes: ['id', 'okaykasu'],
+    attributes: ['okaykasu'],
     order: [
       ['id', 'ASC']
     ]
   })]).then(function(results){
-    const okaykasucontent = JSON.parse(results[2][0].okaykasu)　
+    const okaykasucontent = JSON.parse(results[2])　
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
     res.render('index', { 
       chunkrange: results[0].rows[0],
       nextstagerange: results[1].rows[0],
-      okaykasudata: okaykasucontenthandler(okaykasucontent)
+      //okaykasudata: okaykasucontenthandler(okaykasucontent)
+      okaykasudata: JSON.stringify(okaykasucontent)
     });
   }else{
     res.render('index', { 
@@ -54,5 +55,19 @@ router.get('/', (req, res, next) => {
 module.exports = router;
 
 function okaykasucontenthandler(okaykasucontent) {
- return JSON.stringify(okaykasucontent);
+  switch(okaykasucontent.type){
+    case 'flex':
+      okaykasuFlex(okaykasucontent);
+      break;
+    case 'text':
+      break;
+    case 'image':
+      break;
+
+  }
+ return ;
+}
+
+function okaykasuFlex(okaykasucontent){
+
 }
