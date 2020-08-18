@@ -59,17 +59,17 @@ function okaykasucontenthandler(okaykasucontent) {
     let linemessage = JSON.parse(okaykasucontent[i].okaykasu);
   switch(linemessage.type){
     case 'flex':
-      webcontent.push({type: text,
+      webcontent.push({type: 'text',
                        linemessage: okaykasuFlex(linemessage)
                       });
       break;
     case 'text':
-      webcontent.push({type: text,
+      webcontent.push({type: 'text',
                       linemessage: linemessage.text
                       });
       break;
     case 'image':
-      webcontent.push({type: Image,
+      webcontent.push({type: 'image',
                       linemessage: linemessage.originalContentUrl
                       })
       break;
