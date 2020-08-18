@@ -4,7 +4,7 @@ const router = express.Router();
 const ChunkRangeDB = require('../v1/lib/ChunkRangeDB');
 const NextStageRangeDB = require('../v1/lib/NextStageRangeDB');
 const OkaykasuDB = require('../v1/lib/OkaykasuDB');
-const { noExtendLeft } = require('sequelize/types/lib/operators');
+//const { noExtendLeft } = require('sequelize/types/lib/operators');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
