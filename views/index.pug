@@ -21,5 +21,6 @@ html(lang="ja")
         p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
         a(href="/auth/google") ログイン
       else
-
+        each okaykasudatum in okaykasudata
+          p #{okaykasudatum}
     
