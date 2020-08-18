@@ -64,7 +64,7 @@ function okaykasucontenthandler(okaykasucontent) {
       webcontent.push(linemessage.text);
       break;
     case 'image':
-      webcontent.push(`<img src="${linemessage.originalContentUrl}" width="50%" height="50%"`)
+      webcontent.push(`<img src="${linemessage.originalContentUrl}" width="50%" height="50%">`)
       break;
   }
 }
