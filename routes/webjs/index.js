@@ -27,7 +27,7 @@ router.get('/', (req, res, next) => {
       ['id', 'ASC']
     ]
   })]).then(function(results){
-    const okaykasucontent = JSON.parse(results[2])　
+    const okaykasucontent = results[2];
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
     res.render('index', { 
