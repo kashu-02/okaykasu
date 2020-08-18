@@ -30,26 +30,25 @@ router.get('/', (req, res, next) => {
     const okaykasucontent = results[2];
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
-    res.render('index', { 
-      chunkrange: results[0].rows[0],
-      nextstagerange: results[1].rows[0],
-      okaykasudata: okaykasucontenthandler(okaykasucontent)
+      res.render('index', { 
+        chunkrange: results[0].rows[0],
+        nextstagerange: results[1].rows[0],
+        okaykasudata: okaykasucontenthandler(okaykasucontent)
     });
-  }else{
-    res.render('index', { 
-      chunkrange: results[0].rows[0],
-      nextstagerange: results[1].rows[0]
-    });
-  }
-  }else{
-    res.render('index', { 
-      chunkrange: results[0].rows[0],
-      nextstagerange: results[1].rows[0]
-    });
-  }
-  console.log(req.user.emails[0].value);
-});
+    }else{
+      res.render('index', { 
+        chunkrange: results[0].rows[0],
+        nextstagerange: results[1].rows[0]
+      });
+    }
+    }else{
+      res.render('index', { 
+        chunkrange: results[0].rows[0],
+        nextstagerange: results[1].rows[0]
+      });
+    }
   });
+    });
 
 module.exports = router;
 
