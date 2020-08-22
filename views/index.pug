@@ -28,7 +28,7 @@ html(lang="ja")
     div
       unless okaykasudata
         p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
-        a(href="/auth/google") ログイン
+        a(href="/auth/google" class="btn btn-primary") ログイン
       else
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
