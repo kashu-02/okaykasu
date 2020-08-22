@@ -10,14 +10,16 @@ html(lang="ja")
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk",
     crossorigin="anonymous")
   body
-    h1 おk粕　Web版
-    div
+    nav(class="navbar navbar-dark bg-dark")
+      a(href="#" class="navbar-brand")"おk粕　Web版"
+    div(class="container")
       table
         tr
           th チャンク
         tr
           td #{chunkrange.date}
           td #{chunkrange.chunkrange}
+    div(class="container")
       table
         tr
           th ネクステ
@@ -25,13 +27,14 @@ html(lang="ja")
           td #{nextstagerange.date}
           td #{nextstagerange.nextstagerange}
 
-    div
+    div(class="container")
       unless okaykasudata
         p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
         a(href="/auth/google" class="btn btn-primary") ログイン
       else
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
+            div(class="container")
             if okaykasudatum.type === 'image'
               img(src=okaykasudatum.linemessage width="50%" height="50%")
             else if okaykasudatum.type === 'text'
