@@ -13,13 +13,9 @@ html(lang="ja")
     nav(class="navbar navbar-dark bg-dark")
       a(href="#" class="navbar-brand") おk粕Web版
     div(class="container")
-      table
-        tr
-          th チャンク
-        tr
-          td #{chunkrange.date}
-          td #{chunkrange.chunkrange}
-    div(class="container")
+      div(class="card-header")
+        h5(class="card-title") チャンク　#{chunkrange.date}
+        h6(class="card-text") #{chunkrange.chunkrange}
       table
         tr
           th ネクステ
