@@ -16,14 +16,14 @@ html(lang="ja")
 
     div(class="row mt-4 mb-5")
       div(class="col-sm-6")
-        div(class="card w-50")
+        div(class="card w-75")
           div(class="card-header bg-success text-white")
             p(class="card-title") チャンク　#{chunkrange.date}
           div(class="card-body")
             p(class="card-text") #{chunkrange.chunkrange}
 
       div(class="col-sm-6")
-        div(class="card w-50")
+        div(class="card w-75")
           div(class="card-header bg-warning text-white")
             p(class="card-title") ネクステ　#{nextstagerange.date}
           div(class="card-body")
@@ -39,11 +39,11 @@ html(lang="ja")
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
             if okaykasudatum.type === 'image'
-              div(class="card")
+              div(class="card mb-2")
                 div(class="card-body")
                   img(class="card-img" src=okaykasudatum.linemessage width="50%" height="50%")
             else if okaykasudatum.type === 'text'
-              div(class="card bg-light")
+              div(class="card bg-light mb-2")
                 div(class="card-body")
                   p(class="card-text") !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
 
