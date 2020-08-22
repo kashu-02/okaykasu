@@ -5,7 +5,7 @@ const ChunkRangeDB = require('../v1/lib/ChunkRangeDB');
 const NextStageRangeDB = require('../v1/lib/NextStageRangeDB');
 
 /* GET home page. */
-router.get('/bunkei', (req, res, next) => {
+router.get('/', (req, res, next) => {
   Promise.all([ChunkRangeDB.findAndCountAll({
     attributes: ['date', 'chunkrange'],
     order: [
