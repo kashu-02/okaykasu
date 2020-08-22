@@ -3,9 +3,12 @@ html(lang="ja")
   head
     meta(charset="UTF-8")
     title おk粕　Web版
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel="stylesheet",
+    href="./node_modules/bootstrap/dist/css/bootstrap.min.css")
   body
     h1 おk粕　Web版
-    h1 DEBUG MODE
     div
       table
         tr
@@ -31,3 +34,7 @@ html(lang="ja")
               img(src=okaykasudatum.linemessage width="50%" height="50%")
             else if okaykasudatum.type === 'text'
               p !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
+
+  script(src="./node_modules/jquery/dist/jquery.slim.min.js")
+  script(src="./node_modules/popper.js/dist/umd/popper.min.js")
+  script(src="./node_modules/bootstrap/dist/js/bootstrap.min.js")
