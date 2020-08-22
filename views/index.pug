@@ -39,12 +39,12 @@ html(lang="ja")
           each okaykasudatum in okaykasudata
             if okaykasudatum.type === 'image'
               div(class="card")
-              div(class="card-body")
-                img(class="card-img" src=okaykasudatum.linemessage width="50%" height="50%")
+                div(class="card-body")
+                  img(class="card-img" src=okaykasudatum.linemessage width="50%" height="50%")
             else if okaykasudatum.type === 'text'
               div(class="card bg-light")
-              div(class="card-body")
-                p(class="card-text") !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
+                div(class="card-body")
+                  p(class="card-text") !{okaykasudatum.linemessage.replace(/[&"'<>]/g,function(c){return escapeMap.hasOwnProperty(c)?escapeMap[c]:c}).replace(/\r?\n|\r/g,"<br>")}
 
   script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js",
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj",
