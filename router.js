@@ -25,6 +25,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const googleauth = require('./routes/auth/auth.js');
 const indexRouter = require('./routes/webjs/index');
+const bunkeiRouter = require('./routes/webjs/bunkei');
 // セッションを使用
 const session = require('express-session');
 
@@ -54,6 +55,7 @@ app.use('/auth', googleauth);
 //app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'pug');
 app.use('/',indexRouter);
+app.use('/bunkei',bunkeiRouter);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   
