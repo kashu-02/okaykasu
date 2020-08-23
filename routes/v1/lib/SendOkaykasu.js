@@ -49,7 +49,7 @@ router.post('/',function(req,res){
     }else {
         res.status(400).json({ error: 'Invalid request body. "message_type"'});
     }
-    console.log(`message${message}`);
+    console.log(`message${JSON.stringify(message)}`);
     if(send_type === 'push'){
         var to = req.body.to;
         client.pushMessage(to, message)
