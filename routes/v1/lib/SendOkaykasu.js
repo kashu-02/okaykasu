@@ -39,8 +39,8 @@ router.post('/',function(req,res){
     }else if(message_type === 'image'){
         const originalContentUrl = req.body.originalContentUrl;
         const previewImageUrl = req.body.previewImageUrl;
-        message.originalContentUrl = originalContentUrl;
-        message.previewImageUrl = previewImageUrl;
+        message.originalContentUrl = dropboxUrlReplaceHandler(originalContentUrl);
+        message.previewImageUrl = dropboxUrlReplaceHandler(previewImageUrl);
     }else if(message_type === 'flex'){
         const altText = req.body.altText;
         const contents = req.body.contents;
@@ -158,6 +158,12 @@ router.post('/',function(req,res){
 });
 
 module.exports.router = router;
+
+function dropboxUrlReplaceHandler(dropboxUrl){
+  let originalUrlreplace = dropboxUrl.replace('www.dropbox.com','dl.dropboxusercontent.com');
+  let finallyUrlreplace = originalUrlreplace.replace('?dl=0','');
+  return finallyUrlreplace
+}
 
 /*
 
