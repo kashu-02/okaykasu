@@ -27,6 +27,7 @@ const googleauth = require('./routes/auth/auth.js');
 const indexRouter = require('./routes/webjs/index');
 const bunkeiRouter = require('./routes/webjs/bunkei');
 const AllChunkRanges = require('./routes/webjs/allchunkranges')
+const AllNextRanges = require('./routes/webjs/allnextranges')
 // セッションを使用
 const session = require('express-session');
 
@@ -58,6 +59,7 @@ app.set('view engine', 'pug');
 app.use('/',indexRouter);
 app.use('/bunkei',bunkeiRouter);
 app.use('/allchunkranges',AllChunkRanges);
+app.use('/allnextranges',AllNextRanges);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   
