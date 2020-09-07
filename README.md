@@ -1,1 +1,3 @@
-"# okaykasu" 
+# okaykasu
+
+###準備中
