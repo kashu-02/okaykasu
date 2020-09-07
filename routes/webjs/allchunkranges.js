@@ -13,9 +13,9 @@ router.get('/', (req, res, next) => {
     ]
   }).then(function(results){
     console.log(JSON.stringify(results));
-     // res.render('allchunkranges', { 
-        
-    //});
+      res.render('allchunkranges', { 
+        allchunkranges: results
+    });
   });
 });
 
