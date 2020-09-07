@@ -26,6 +26,7 @@ const passport = require('passport');
 const googleauth = require('./routes/auth/auth.js');
 const indexRouter = require('./routes/webjs/index');
 const bunkeiRouter = require('./routes/webjs/bunkei');
+const AllChunkRanges =
 // セッションを使用
 const session = require('express-session');
 
