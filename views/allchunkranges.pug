@@ -28,18 +28,18 @@ html(lang="ja")
           li(class="nav-item")
             a(class="nav-link justify-content-end" target="_blank" rel="noopener noreferrer" href="https://github.com/kashu-02/okaykasu") 技術情報(GitHub)
 
-          table(class="table")
-            thead
-              tr
-                th(scope="col") 日時
-                th(scope="col") 範囲
-            tbody
-              each chunkrange in allchunkranges
-                tr
-                  td
-                    #{chunkrange.date}
-                  td
-                    #{chunkrange.chunkrange}
+    table(class="table")
+      thead
+        tr
+          th(scope="col") 日時
+          th(scope="col") 範囲
+      tbody
+        each chunkrange in allchunkranges
+          tr
+            td
+              #{chunkrange.date}
+            td
+              #{chunkrange.chunkrange}
              
   script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js",
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj",
