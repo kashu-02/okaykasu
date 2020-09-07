@@ -13,9 +13,20 @@ html(lang="ja")
     script(src="//accaii.com/okaykasu/script.js" async)
     noscript
       img(src="//accaii.com/okaykasu/script?guid=on")
-      
-    nav(class="navbar navbar-dark bg-dark")
-      a(href="#" class="navbar-brand") おk粕Web版
+
+    nav(class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3")
+      button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation")
+        span(class="navbar-toggler-icon")
+      a(class="navbar-brand" href="#") おk粕Web版
+      div(class="collapse navbar-collapse")
+        ul(class="navbar-nav")
+          li(class="nav-item")
+            a(class="nav-link" href="#") チャンク範囲一覧
+          li(class="nav-item")
+            a(class="nav-link" href="#")　ネクステ範囲一覧
+          li(class="nav-item")
+            a(class="nav-link" href="#") エクスポート
+            
 
     div(class="container")
       div(class="row mt-4 mb-5 justify-content-around")
