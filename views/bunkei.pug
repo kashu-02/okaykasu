@@ -17,21 +17,33 @@ html(lang="ja")
     nav(class="navbar navbar-dark bg-dark")
       a(href="#" class="navbar-brand") おk粕文系Web版
 
-    div(class="container")
+div(class="container")
       div(class="row mt-4 mb-5 justify-content-around")
         div(class="col-sm-6")
-          div(class="card w-75")
+          div(class="card w-75 align-middle")
             div(class="card-header bg-success text-white")
-              p(class="card-title") チャンク　#{chunkrange.date}
+              if chunkrange
+                p(class="card-title d-flex align-items-center") チャンク　#{chunkrange.date}
+              else
+                p(class="card-title d-flex align-items-center") チャンク　取得できませんでした。
             div(class="card-body")
-              p(class="card-text") #{chunkrange.chunkrange}
+              if chunkrange
+                p(class="card-text d-flex align-items-center") #{chunkrange.chunkrange}
+              else
+                p(class="card-text d-flex align-items-center") 取得できませんでした。
 
         div(class="col-sm-6")
-          div(class="card w-75")
+          div(class="card w-75 align-middle")
             div(class="card-header bg-warning text-white")
-              p(class="card-title") ネクステ　#{nextstagerange.date}
+              if nextstagerange
+                p(class="card-title") ネクステ　#{nextstagerange.date}
+              else
+                p(class="card-title") ネクステ　取得できませんでした。
             div(class="card-body")
-              p(class="card-text") #{nextstagerange.nextstagerange}
+              if nextstagerange
+                p(class="card-text") #{nextstagerange.nextstagerange}
+              else
+                p(class="card-text") 取得できませんでした。
 
   script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js",
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj",
