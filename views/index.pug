@@ -22,16 +22,29 @@ html(lang="ja")
         div(class="col-sm-6")
           div(class="card w-75 align-middle")
             div(class="card-header bg-success text-white")
-              p(class="card-title d-flex align-items-center") チャンク　#{chunkrange.date || "取得できませんでした。"}
+              - if chunkrange.date
+                  p(class="card-title d-flex align-items-center") チャンク　#{chunkrange.date}
+                else
+                  p(class="card-title d-flex align-items-center") チャンク　取得できませんでした。
             div(class="card-body")
-              p(class="card-text d-flex align-items-center") #{chunkrange.chunkrange || "取得できませんでした。"}
+              - if chunkrange.chunkrange
+                  p(class="card-text d-flex align-items-center") #{chunkrange.chunkrange}
+                else
+                  p(class="card-text d-flex align-items-center") 取得できませんでした。
 
         div(class="col-sm-6")
           div(class="card w-75 align-middle")
             div(class="card-header bg-warning text-white")
-              p(class="card-title") ネクステ　#{nextstagerange.date || "取得できませんでした。"}
+              - if nextstagerange.date
+                  p(class="card-title") ネクステ　#{nextstagerange.date}
+                else
+                  p(class="card-title") ネクステ　取得できませんでした。
             div(class="card-body")
-              p(class="card-text") #{nextstagerange.nextstagerange || "取得できませんでした。"}
+              - if nextstagerange.nextstagerange
+                  p(class="card-text") #{nextstagerange.nextstagerange}
+                else
+                 p(class="card-text") 取得できませんでした。
+                
 
     hr
 
