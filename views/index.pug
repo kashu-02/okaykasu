@@ -8,7 +8,7 @@ html(lang="ja")
     div(class="container")
       div(class="row mt-4 mb-5 justify-content-around")
         div(class="col-sm-6")
-          div(class="card w-75 align-middle")
+          div(class="card w-75 mt-2 align-middle")
             div(class="card-header bg-success text-white")
               if chunkrange
                 p(class="card-title d-flex align-items-center") チャンク　#{chunkrange.date}
@@ -21,7 +21,7 @@ html(lang="ja")
                 p(class="card-text d-flex align-items-center") 取得できませんでした。
 
         div(class="col-sm-6")
-          div(class="card w-75 align-middle")
+          div(class="card w-75 mt-2 align-middle")
             div(class="card-header bg-warning text-white")
               if nextstagerange
                 p(class="card-title") ネクステ　#{nextstagerange.date}
