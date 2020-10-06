@@ -6,11 +6,6 @@ html(lang="ja")
     include ./_header
 
     div(class="container")
-      unless isLogined
-        p 試験範囲を表示するにはGoogleアカウントでのログインが必要です。
-        a(href="/auth/google" class="btn btn-primary") ログイン
-        
-      else
-       iframe(src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTzSbri-5s_do0JPywyD6jouhBnCwdu9m0FhxBdqNIYmy7BG3tz2TJUXhzG_NinpH0Sp-dnmQq20y1I/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false")
+     iframe(width="600" height="400" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTzSbri-5s_do0JPywyD6jouhBnCwdu9m0FhxBdqNIYmy7BG3tz2TJUXhzG_NinpH0Sp-dnmQq20y1I/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;range=A1%3G20&")
    
     include ./_script
