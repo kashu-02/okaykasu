@@ -6,7 +6,7 @@ html(lang="ja")
     include ./_header
 
     div(class="container")
-      unless okaykasudata
+      unless isLogined
         p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
         a(href="/auth/google" class="btn btn-primary") ログイン
       else
