@@ -26,8 +26,9 @@ const passport = require('passport');
 const googleauth = require('./routes/auth/auth.js');
 const indexRouter = require('./routes/webjs/index');
 const bunkeiRouter = require('./routes/webjs/bunkei');
-const AllChunkRanges = require('./routes/webjs/allchunkranges')
-const AllNextRanges = require('./routes/webjs/allnextranges')
+const AllChunkRanges = require('./routes/webjs/allchunkranges');
+const AllNextRanges = require('./routes/webjs/allnextranges');
+const examrange = require('./routes/webjs/examrange.js');
 // セッションを使用
 const session = require('express-session');
 
@@ -60,6 +61,7 @@ app.use('/',indexRouter);
 app.use('/bunkei',bunkeiRouter);
 app.use('/allchunkranges',AllChunkRanges);
 app.use('/allnextranges',AllNextRanges);
+app.use('/examrange',examrange);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   
