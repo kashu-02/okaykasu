@@ -25,7 +25,8 @@ router.get('/', (req, res, next) => {
     order: [
       ['id', 'ASC']
     ]
-  })]).then(function(results){
+  })]
+).then(function(results){
 */
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
