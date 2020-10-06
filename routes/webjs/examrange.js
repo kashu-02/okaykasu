@@ -29,15 +29,15 @@ router.get('/', (req, res, next) => {
 */
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
-      res.render('index', { 
+      res.render('examrange', { 
         isLogined: 'Logined'
     });
     }else{
-      res.render('index', {
+      res.render('examrange', {
       });
     }
     }else{
-      res.render('index', { 
+      res.render('examrange', { 
       });
     }
   });
