@@ -146,11 +146,11 @@ router.get('/',function(req,res){
  */
 router.put('/',function(req,res){
   console.log(req.body);
+  const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
   if(!req.body.Range || !chunkdate || chunkdate === 'Invalid date'){
     res.status(400).json({ error: 'Invalid request body' });
     return false;
   }
-  const chunkdate = moment(req.body.Date).format('YYYY-MM-DD');
   ChunkRangeDB.update({
     chunkrange:req.body.Range
   },
