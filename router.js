@@ -44,7 +44,11 @@ app.use('/api/v1/', apirouter);
 app.use(session({
   　　secret: process.env.COOKIE_SECRET,
       resave: false,
-      saveUninitialized: false 
+      saveUninitialized: false,
+      rolling: true,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+      } 
   }));
 app.use(passport.initialize());
 app.use(passport.session());
