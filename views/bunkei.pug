@@ -9,11 +9,11 @@ html(lang="ja")
       div(class="row mt-4 mb-5 justify-content-around")
         div(class="col-sm-6")
           div(class="card w-75 align-middle")
-            div(class="card-header bg-success text-white")
+            div(class="card-header bg-primary text-white")
               if chunkrange
-                p(class="card-title d-flex align-items-center") チャンク　#{chunkrange.date}
+                p(class="card-title d-flex align-items-center") ターゲット　#{chunkrange.date}
               else
-                p(class="card-title d-flex align-items-center") チャンク　取得できませんでした。
+                p(class="card-title d-flex align-items-center") ターゲット　取得できませんでした。
             div(class="card-body")
               if chunkrange
                 p(class="card-text d-flex align-items-center") #{chunkrange.chunkrange}
