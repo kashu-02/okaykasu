@@ -106,7 +106,7 @@ exports.bunkei_lineBot = function (req, res) {
                     color: "#FFFFFF"
                   }
                 ],
-                backgroundColor: "#008000"
+                backgroundColor: "#0000FF"
               },
               body: {
                 type: "box",
