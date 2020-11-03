@@ -73,13 +73,13 @@ exports.bunkei_lineBot = function (req, res) {
     LineFriend.linefriendupdate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
     switch(ev.message.text){
-      case 'ちゃんく':
-      case 'チャンク':
-      case 'おk粕　チャンク':
-      case 'おk粕 チャンク': 
-      case 'おけかす　チャンク':
-      case 'チ':
-      case 'ち':
+      case 'たーげっと':
+      case 'ターゲット':
+      case 'おk粕　ターゲット':
+      case 'おk粕 ターゲット': 
+      case 'おけかす　ターゲット':
+      case 'タ':
+      case 'た':
       case 'お':
         ChunkRangeDB.findAndCountAll({
           attributes: ['date', 'chunkrange'],
@@ -204,7 +204,7 @@ exports.bunkei_lineBot = function (req, res) {
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
-      text: `${pro}さん、友だち追加ありがとうございます！\n\nおk粕は日々の連絡事項や課題を配信するbotです。\n\n主な機能は、下のメニューから送信でき、\n\n「チャンク」=チャンクの範囲を取得\n\nといった感じです。`
+      text: `${pro}さん、友だち追加ありがとうございます！\n\nおk粕は日々の連絡事項や課題を配信するbotです。\n\n主な機能は、下のメニューから送信でき、\n\n「ターゲット」=ターゲットの範囲を取得\n\nといった感じです。`
       }
       ,
       {

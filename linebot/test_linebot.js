@@ -93,13 +93,13 @@ exports.test_lineBot = function (req, res) {
         client.replyMessage(ev.replyToken, sendokaykasu);
         });
       break;
-      case 'ちゃんく':
-      case 'チャンク':
-      case 'おk粕　チャンク':
-      case 'おk粕 チャンク': 
-      case 'おけかす　チャンク':
-      case 'チ':
-      case 'ち':
+      case 'たーげっと':
+      case 'ターゲット':
+      case 'おk粕　ターゲット':
+      case 'おk粕 ターゲット': 
+      case 'おけかす　ターゲット':
+      case 'タ':
+      case 'た':
       case 'お':
         ChunkRangeDB.findAndCountAll({
           attributes: ['date', 'chunkrange'],
@@ -224,7 +224,7 @@ exports.test_lineBot = function (req, res) {
     return client.replyMessage(ev.replyToken, [
       {
       type: "text",
-      text: `${pro}さん、友だち追加ありがとうございます！\n\nおk粕は日々の連絡事項や課題を配信するbotです。\n\n主な機能は、下のメニューから送信でき、\n\n「おk粕」=配信した内容を取得\n「classroom」=最新10件のclassroomの投稿を取得\n「チャンク」=チャンクの範囲を取得\n\nといった感じです。`
+      text: `${pro}さん、友だち追加ありがとうございます！\n\nおk粕は日々の連絡事項や課題を配信するbotです。\n\n主な機能は、下のメニューから送信でき、\n\n「おk粕」=配信した内容を取得\n「classroom」=最新10件のclassroomの投稿を取得\n「ターゲット」=ターゲットの範囲を取得\n\nといった感じです。`
       },
       {
         type: "text",
