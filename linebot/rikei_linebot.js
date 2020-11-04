@@ -101,6 +101,7 @@ exports.rikei_lineBot = function (req, res) {
       case 'タ':
       case 'た':
       case 'お':
+      case 'チャンク':
         ChunkRangeDB.findAndCountAll({
           attributes: ['date', 'chunkrange'],
           order: [
