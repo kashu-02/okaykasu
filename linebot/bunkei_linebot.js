@@ -81,6 +81,9 @@ exports.bunkei_lineBot = function (req, res) {
       case 'タ':
       case 'た':
       case 'お':
+      case 'クラウン':
+      case 'くらうん':
+      case 'く':
         ChunkRangeDB.findAndCountAll({
           attributes: ['date', 'chunkrange'],
           order: [
