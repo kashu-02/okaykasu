@@ -40,6 +40,7 @@ function SendChunkRange(){
         const chunkday = moment(chunkrange.rows[0].date);
         if(chunkday.isSame(judgeday,'day')){
           console.log('target matched');
+          const replyday = 'クラウン　' + moment(chunkday).format('DD日(ddd)');
           return client.broadcast({
             type: "flex",
             altText: "This is a Flex Message",
@@ -52,7 +53,7 @@ function SendChunkRange(){
                 contents: [
                   {
                     type: "text",
-                    text: chunkday,
+                    text: replyday,
                     color: "#FFFFFF"
                   }
                 ],
@@ -92,6 +93,7 @@ function SendNeststageRange(){
       const nextstageday = moment(nextstagerange.rows[0].date);
       if(nextstageday.isSame(judgeday,'day')){
         console.log('nextstage matched');
+        const nextstagereplyday = 'ネクステ　' + moment(nextstageday).format('DD日(ddd)');
         return client.broadcast({
           type: "flex",
           altText: "This is a Flex Message",
@@ -104,7 +106,7 @@ function SendNeststageRange(){
               contents: [
                 {
                   type: "text",
-                  text: nextstageday,
+                  text: nextstagereplyday,
                   color: "#FFFFFF"
                 }
               ],
