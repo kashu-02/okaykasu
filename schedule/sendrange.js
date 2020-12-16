@@ -38,7 +38,7 @@ function SendChunkRange(){
       }).then(chunkrange => {
           console.log(chunkrange.rows[0].date);
         const chunkday = moment(chunkrange.rows[0].date);
-        if(chunkday.isSame(judgeday)){
+        if(chunkday.isSame(judgeday,'day')){
           console.log('target matched');
           return client.broadcast({
             type: "flex",
@@ -90,7 +90,7 @@ function SendNeststageRange(){
   }).then(nextstagerange => {
         console.log(nextstagerange.rows[0].date);
       const nextstageday = moment(nextstagerange.rows[0].date);
-      if(nextstageday.isSame(judgeday)){
+      if(nextstageday.isSame(judgeday,'day')){
         console.log('nextstage matched');
         return client.broadcast({
           type: "flex",
