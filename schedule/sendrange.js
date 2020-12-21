@@ -7,16 +7,18 @@ const moment = require('moment');
     weekdaysShort: ["日","月","火","水","木","金","土"],
 });
 const line = require("@line/bot-sdk");
-/*
+
 const bunkei_config = {
   channelAccessToken: process.env.BUNKEI_ACCESS_TOKEN,
   channelSecret: process.env.BUNKEI_SECRET_KEY
 }; 
-*/
+
+/*
 const bunkei_config = {
   channelAccessToken: process.env.TEST_ACCESS_TOKEN,
   channelSecret: process.env.TEST_SECRET_KEY
-}; 
+};
+*/
 const client = new line.Client(bunkei_config);
 const ChunkRangeDB = require('../routes/v1/lib/ChunkRangeDB.js');
 const NextStageRangeDB = require('../routes/v1/lib/NextStageRangeDB.js');
