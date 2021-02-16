@@ -6,6 +6,7 @@ html(lang="ja")
     include ./_header
 
     div(class="container")
+      a(href="https://docs.google.com/spreadsheets/d/1ZqUB2NJ-11sOpR9Q4tIhihsO5ed5vcnTZTJuEcg3238/edit?usp=sharing") Googleスプレッドシートで開く
       unless isLogined
         p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
         a(href="/auth/google" class="btn btn-primary") ログイン
