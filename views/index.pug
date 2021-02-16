@@ -42,6 +42,7 @@ html(lang="ja")
         a(href="/auth/google" class="btn btn-primary") ログイン
       else
           a(href="/examrange" class="btn btn-info float-left") 試験範囲
+          br
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
             if okaykasudatum.type === 'image'
