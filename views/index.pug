@@ -41,8 +41,6 @@ html(lang="ja")
         p 課題、連絡事項を表示するには学校のGoogleアカウントでのログインが必要です。
         a(href="/auth/google" class="btn btn-primary") ログイン
       else
-          a(href="/examrange" class="btn btn-info float-left") 試験範囲
-          br
           - var escapeMap = {'&':'&amp;', '\'':'&#39;', '"':'&quot;', '<':'&lt;', '>':'&gt;'};
           each okaykasudatum in okaykasudata
             if okaykasudatum.type === 'image'
