@@ -36,9 +36,9 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "script-src": ["'self'", "https://accaii.com/okaykasu/script.js", "https://code.jquery.com/", "https://cdn.jsdelivr.net/", "https://stackpath.bootstrapcdn.com/"],
+      "script-src": ["'self'", "https://accaii.com/", "https://code.jquery.com/", "https://cdn.jsdelivr.net/", "https://stackpath.bootstrapcdn.com/"],
       "frame-src": ["'self'", "https://docs.google.com/"],
-      "img-src": ["'self'", "https://dl.dropboxusercontent.com"],
+      "img-src": ["'self'", "https://dl.dropboxusercontent.com", "data:"],
     },
   })
 )
