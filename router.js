@@ -32,7 +32,16 @@ const examrange = require('./routes/webjs/examrange.js');
 // セッションを使用
 const session = require('express-session');
 
-app.use(helmet())
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "script-src": ["'self'", "https://accaii.com/okaykasu/script.js", "https://code.jquery.com/", "https://cdn.jsdelivr.net/", "https://stackpath.bootstrapcdn.com/"],
+      "frame-src": ["'self'", "https://docs.google.com/"],
+      "img-src": ["'self'", "https://dl.dropboxusercontent.com"],
+    },
+  })
+)
 app.post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot.test_lineBot(req, res))
 app.post("/rikei_hook/", line.middleware(rikei_config), (req, res) => rikei_lineBot.rikei_lineBot(req, res))
 app.post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
