@@ -93,10 +93,13 @@ exports.bunkei_lineBot = function (req, res) {
           limit: 1
         }).then(chunkrange => {
           let chunkday;
+          let text;
           if (chunkrange.count != 0) {
             chunkday = moment(chunkrange.rows[0].date).format('DD日(ddd)');
+            text = chunkrange.rows[0].chunkrange
           } else {
             chunkday = "エラーが発生しました。"
+            text = "取得できませんでした。範囲が登録されていない可能性があります。"
           }
           return client.replyMessage(ev.replyToken, {
             type: "flex",
@@ -122,7 +125,7 @@ exports.bunkei_lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: chunkrange.rows[0].chunkrange || "取得できませんでした。範囲が登録されていない可能性があります。"
+                    text: text
                   }
                 ]
               }
@@ -143,10 +146,13 @@ exports.bunkei_lineBot = function (req, res) {
         }).then(nextstagerange => {
           console.log("NextStageRange" + JSON.stringify(nextstagerange));
           let nextstageday;
+          let text;
           if (nextstagerange.count != 0) {
             nextstageday = moment(nextstagerange.rows[0].date).format('DD日(ddd)');
+            text = nextstagerange.rows[0].nextstagerange;
           } else {
             nextstageday = "エラーが発生しました。"
+            text = "取得できませんでした。範囲が登録されていない可能性があります。"
           }
           return client.replyMessage(ev.replyToken, {
             type: "flex",
@@ -172,7 +178,7 @@ exports.bunkei_lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: nextstagerange.rows[0].nextstagerange || "取得できませんでした。範囲が登録されていない可能性があります。"
+                    text: text
                   }
                 ]
               }

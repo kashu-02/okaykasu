@@ -13,7 +13,7 @@ html(lang="ja")
               if chunkrange
                 p(class="card-title d-flex align-items-center") ターゲット　#{chunkrange.date}
               else
-                p(class="card-title d-flex align-items-center") ターゲット　取得できませんでした。範囲が登録されていない可能性があります。
+                p(class="card-title d-flex align-items-center") ターゲット　取得できませんでした。
             div(class="card-body")
               if chunkrange
                 p(class="card-text d-flex align-items-center") #{chunkrange.chunkrange}
@@ -26,7 +26,7 @@ html(lang="ja")
               if nextstagerange
                 p(class="card-title") ネクステ　#{nextstagerange.date}
               else
-                p(class="card-title") ネクステ　取得できませんでした。範囲が登録されていない可能性があります。
+                p(class="card-title") ネクステ　取得できませんでした。
             div(class="card-body")
               if nextstagerange
                 p(class="card-text") #{nextstagerange.nextstagerange}
