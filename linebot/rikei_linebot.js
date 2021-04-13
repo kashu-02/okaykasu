@@ -112,7 +112,12 @@ exports.rikei_lineBot = function (req, res) {
           offset: 0,
           limit: 1
         }).then(chunkrange => {
-          const chunkday = moment(chunkrange.rows[0].date).format('DD日(ddd)');
+          let chunkday;
+          if (chunkrange.count != 0) {
+            chunkday = moment(chunkrange.rows[0].date).format('DD日(ddd)');
+          } else {
+            chunkday = "エラーが発生しました。"
+          }
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
@@ -137,7 +142,7 @@ exports.rikei_lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: chunkrange.rows[0].chunkrange
+                    text: chunkrange.rows[0].chunkrange || "取得できませんでした。範囲が登録されていない可能性があります。"
                   }
                 ]
               }
@@ -157,7 +162,12 @@ exports.rikei_lineBot = function (req, res) {
           limit: 1
         }).then(nextstagerange => {
           console.log("NextStageRange" + JSON.stringify(nextstagerange));
-          const nextstageday = moment(nextstagerange.rows[0].date).format('DD日(ddd)');
+          let nextstageday;
+          if (nextstagerange.count != 0) {
+            nextstageday = moment(nextstagerange.rows[0].date).format('DD日(ddd)');
+          } else {
+            nextstageday = "エラーが発生しました。"
+          }
           return client.replyMessage(ev.replyToken, {
             type: "flex",
             altText: "This is a Flex Message",
@@ -182,7 +192,7 @@ exports.rikei_lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: nextstagerange.rows[0].nextstagerange
+                    text: nextstagerange.rows[0].nextstagerange || "取得できませんでした。範囲が登録されていない可能性があります。"
                   }
                 ]
               }
