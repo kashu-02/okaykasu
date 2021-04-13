@@ -134,7 +134,8 @@ exports.rikei_lineBot = function (req, res) {
                   {
                     type: "text",
                     text: chunkday,
-                    color: "#FFFFFF"
+                    color: "#FFFFFF",
+                    adjustMode: "shrink-to-fit"
                   }
                 ],
                 backgroundColor: "#0000FF"
@@ -145,7 +146,8 @@ exports.rikei_lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: text
+                    text: text,
+                    adjustMode: "shrink-to-fit"
                   }
                 ]
               }
@@ -187,7 +189,8 @@ exports.rikei_lineBot = function (req, res) {
                   {
                     type: "text",
                     text: nextstageday,
-                    color: "#FFFFFF"
+                    color: "#FFFFFF",
+                    adjustMode: "shrink-to-fit"
                   }
                 ],
                 backgroundColor: "#FFA500"
@@ -198,7 +201,8 @@ exports.rikei_lineBot = function (req, res) {
                 contents: [
                   {
                     type: "text",
-                    text: text
+                    text: text,
+                    adjustMode: "shrink-to-fit"
                   }
                 ]
               }
