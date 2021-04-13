@@ -119,7 +119,7 @@ exports.rikei_lineBot = function (req, res) {
             text = chunkrange.rows[0].chunkrange
           } else {
             chunkday = "エラーが発生しました。";
-            text = "取得できませんでした。範囲が登録されていない可能性があります。"
+            text = "範囲が登録されていない可能性があります。"
           }
           return client.replyMessage(ev.replyToken, {
             type: "flex",
@@ -172,7 +172,7 @@ exports.rikei_lineBot = function (req, res) {
             text = nextstagerange.rows[0].nextstagerange
           } else {
             nextstageday = "エラーが発生しました。";
-            text = "取得できませんでした。範囲が登録されていない可能性があります。"
+            text = "範囲が登録されていない可能性があります。"
           }
           return client.replyMessage(ev.replyToken, {
             type: "flex",
