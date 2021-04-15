@@ -33,7 +33,6 @@ const examrange = require('./routes/webjs/examrange.js');
 const session = require('express-session');
 
 app.use(helmet())
-/*
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
@@ -44,7 +43,7 @@ app.use(
     },
   })
 )
-*/
+
 app.post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot.test_lineBot(req, res))
 app.post("/rikei_hook/", line.middleware(rikei_config), (req, res) => rikei_lineBot.rikei_lineBot(req, res))
 app.post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
