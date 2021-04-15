@@ -32,7 +32,7 @@ const examrange = require('./routes/webjs/examrange.js');
 // セッションを使用
 const session = require('express-session');
 
-app.use(healmet())
+app.use(helmet())
 /*
 app.use(
   helmet.contentSecurityPolicy({
