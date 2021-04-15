@@ -19,6 +19,7 @@ const OkaykasuDB = require('./OkaykasuDB.js');
 const { EILSEQ } = require('constants');
 
 router.post('/',function(req,res){
+    console.log(req.body)
     const db_type = req.body.db_type;
     const bot_destination = req.body.bot_destination;
     if(bot_destination === 'rikei'){
