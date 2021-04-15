@@ -21,7 +21,6 @@ const test_lineBot = require('./linebot/test_linebot.js');
 const rikei_lineBot = require('./linebot/rikei_linebot.js');
 const bunkei_lineBot = require('./linebot/bunkei_linebot.js');
 const apirouter = require('./routes/v1/');
-const bodyParser = require('body-parser');
 const passport = require('passport');
 const googleauth = require('./routes/auth/auth.js');
 const indexRouter = require('./routes/webjs/index');
@@ -48,6 +47,8 @@ app.post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot
 app.post("/rikei_hook/", line.middleware(rikei_config), (req, res) => rikei_lineBot.rikei_lineBot(req, res))
 app.post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
 //app.use(cookieParser())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use('/api/v1/', apirouter);
 app.use(session({
