@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
       });
     }
     }else{
-      res.render('luch_menu', { 
+      res.render('lunch_menu', { 
       });
     }
   });
