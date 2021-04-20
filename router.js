@@ -28,6 +28,7 @@ const bunkeiRouter = require('./routes/webjs/bunkei');
 const AllChunkRanges = require('./routes/webjs/allchunkranges');
 const AllNextRanges = require('./routes/webjs/allnextranges');
 const examrange = require('./routes/webjs/examrange.js');
+const lunch_menu = require('./routes/webjs/lunch_menu');
 // セッションを使用
 const session = require('express-session');
 
@@ -76,6 +77,7 @@ app.use('/bunkei',bunkeiRouter);
 app.use('/allchunkranges',AllChunkRanges);
 app.use('/allnextranges',AllNextRanges);
 app.use('/examrange',examrange);
+app.use('/lunch_menu', lunch_menu);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   
