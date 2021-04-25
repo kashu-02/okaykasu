@@ -42,7 +42,7 @@ function SendChunkRange(){
         const chunkday = moment(chunkrange.rows[0].date);
         if(chunkday.isSame(judgeday,'day')){
           console.log('target matched');
-          const replyday = 'クラウン　' + moment(chunkday).format('DD日(ddd)');
+          const replyday = 'ターゲット　' + moment(chunkday).format('DD日(ddd)');
           return client.broadcast({
             type: "flex",
             altText: "This is a Flex Message",
