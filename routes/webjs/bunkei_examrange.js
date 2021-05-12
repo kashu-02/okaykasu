@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
 */
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
-      res.render('examrange', { 
+      res.render('bunkei_examrange', { 
         isLogined: 'Logined'
     });
     }else{
