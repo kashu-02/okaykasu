@@ -35,7 +35,7 @@
     "pg-hstore": "^2.3.3",
     "popper.js": "^1.16.1",
     "pug": "^3.0.2",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.4"
   },
   "devDependencies": {}
 }
