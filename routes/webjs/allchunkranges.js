@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
     }])
     console.log(JSON.stringify(ranges));
       res.render('allchunkranges', { 
-        allchunkranges: ranges[0]
+        allchunkranges: ranges
     });
   });
 });

@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
     }])
     console.log(JSON.stringify(ranges));
       res.render('allnextranges', { 
-        allnextranges: ranges[0]
+        allnextranges: ranges
     });
   });
 });
