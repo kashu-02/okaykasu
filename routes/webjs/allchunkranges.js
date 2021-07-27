@@ -17,10 +17,10 @@ router.get('/', (req, res, next) => {
       ['date', 'ASC']
     ]
   }).then(function (results) {
-    let ranges = results.map(result => {
-      date: moment(result.date).format("MM月DD日(ddd)")
+    let ranges = Array.prototype.push.apply(ranges, results.map(result => [{
+      date: moment(result.date).format("MM月DD日(ddd)"),
       chunkrange: result.chunkrange
-    })
+    }]))
     console.log(JSON.stringify(ranges));
       res.render('allchunkranges', { 
         allchunkranges: ranges
