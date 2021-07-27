@@ -18,10 +18,13 @@ router.get('/', (req, res, next) => {
       ['date', 'ASC']
     ]
   }).then(function (results) {
-    let ranges = results.map(result => [{
-      date: moment(result.date).format("MM月DD日(ddd)"),
-      nextstagerange: result.nextstagerange
-    }])
+    let ranges = []
+    results.forEach(element => {
+      ranges.push({
+        date: moment(element.date).format("MM月DD日(ddd)"),
+        nextstagerange: element.neststagerange
+      })
+    })
     console.log(JSON.stringify(ranges));
       res.render('allnextranges', { 
         allnextranges: ranges
