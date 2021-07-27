@@ -40,7 +40,6 @@ router.get('/google/callback',
          //emailの値をログ表示
          console.log(req.user.emails[0].value);
           if (req.user.emails[0].value.match(/@urawareimei.ed.jp/)) {　//ドメイン認証
-            console.log(`callback_req.session.recenturl:${req.session.recentUrl}`)
             res.redirect(req.session.recentUrl || '/');
          }else{
             req.logout();

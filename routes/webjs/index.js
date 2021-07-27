@@ -4,7 +4,6 @@ const router = express.Router();
 const ChunkRangeDB = require('../v1/lib/ChunkRangeDB');
 const NextStageRangeDB = require('../v1/lib/NextStageRangeDB');
 const OkaykasuDB = require('../v1/lib/OkaykasuDB');
-//const { noExtendLeft } = require('sequelize/types/lib/operators');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -29,6 +28,7 @@ router.get('/', (req, res, next) => {
     ]
   })]).then(function(results){
     const okaykasucontent = results[2];
+    req.session.recentUrl = '/'
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
       res.render('index', { 
