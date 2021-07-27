@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
     results.forEach(element => {
       ranges.push({
         date: moment(element.date).format("MM月DD日(ddd)"),
-        nextstagerange: element.neststagerange
+        nextstagerange: element.nextstagerange
       })
     })
     console.log(JSON.stringify(ranges));
