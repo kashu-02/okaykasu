@@ -1,33 +1,12 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
-//const { noExtendLeft } = require('sequelize/types/lib/operators');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    /* 削除
-  Promise.all([ChunkRangeDB.findAndCountAll({
-    attributes: ['date', 'chunkrange'],
-    order: [
-      ['date', 'ASC']
-    ],
-    offset: 0,
-    limit: 1
-  }),NextStageRangeDB.findAndCountAll({
-    attributes: ['date', 'nextstagerange'],
-    order: [
-      ['date', 'ASC']
-    ],
-    offset: 0,
-    limit: 1
-  }),OkaykasuDB.findAll({
-    attributes: ['okaykasu'],
-    order: [
-      ['id', 'ASC']
-    ]
-  })]
-).then(function(results){
-*/
+  req.session.recentUrl = 'bunkei_examrange'
+  console.log(`req.url:${req.url}`)
+  console.log(`req.session.recenturl:${req.session.recentUrl}`)
     if(req.user){
     if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
       res.render('bunkei_examrange', { 

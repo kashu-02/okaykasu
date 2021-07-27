@@ -4,7 +4,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  req.session.recentUrl = req.url
+  req.session.recentUrl = '/examrange'
   console.log(`req.url:${req.url}`)
   console.log(`req.session.recenturl:${req.session.recentUrl}`)
     if(req.user){

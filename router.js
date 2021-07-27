@@ -69,6 +69,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (user, done) {
      done(null, user);
 });
+
 app.use('/auth', googleauth);
 //app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'pug');
