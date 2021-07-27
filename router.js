@@ -79,7 +79,6 @@ app.use('/allchunkranges',AllChunkRanges);
 app.use('/allnextranges',AllNextRanges);
 app.use('/examrange',examrange);
 app.use('/bunkei_examrange', bunkei_examrange);
-app.use('/lunch_menu', lunch_menu);
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 
   

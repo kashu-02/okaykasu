@@ -25,7 +25,6 @@ passport.use(new GoogleStrategy({
 //Googleログイン認証（スコープ設定）へ
 router.get('/google', passport.authenticate('google', {
       scope: [
-            'https://www.googleapis.com/auth/userinfo.profile',
             'https://www.googleapis.com/auth/userinfo.email'
       ]
 }));
@@ -41,7 +40,7 @@ router.get('/google/callback',
          //emailの値をログ表示
          console.log(req.user.emails[0].value);
          if(req.user.emails[0].value.match(/@urawareimei.ed.jp/)){　//ドメイン認証
-            res.redirect('/');
+            res.redirect(req.session.recentUrl || '/');
          }else{
             req.logout();
             res.redirect('/auth/google');
