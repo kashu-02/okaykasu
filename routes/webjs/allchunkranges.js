@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
     ]
   }).then(function (results) {
     let ranges = results.map(result => [{
-      date: moment(result.date).format(MM月DD日(ddd)),
+      date: moment(result.date).format("MM月DD日(ddd)"),
       chunkrange: result.chunkrange
     }])
     console.log(JSON.stringify(ranges));
