@@ -47,7 +47,6 @@ app.use(
 app.post("/test_hook/", line.middleware(test_config), (req, res) => test_lineBot.test_lineBot(req, res))
 app.post("/rikei_hook/", line.middleware(rikei_config), (req, res) => rikei_lineBot.rikei_lineBot(req, res))
 app.post("/bunkei_hook/", line.middleware(bunkei_config), (req, res) => bunkei_lineBot.bunkei_lineBot(req, res))
-//app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -56,6 +55,7 @@ app.use(session({
   　　secret: process.env.COOKIE_SECRET,
       resave: false,
       saveUninitialized: false,
+      secure: true,
       rolling: true,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 30,
