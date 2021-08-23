@@ -21,17 +21,10 @@ const rikei_config = {
 exports.rikei_lineBot = function (req, res) {
     res.status(200).end(); //200番をレスポンスとして返しておく
     const events = req.body.events;
-    console.log(`linebot内のevents`);
-    console.log(events); 
     const promises = [];
    const destination = req.body.destination
-   console.log(`LINEBOTdestination: ${destination}`);
     for (let i = 0, l = events.length; i < l; i++) {
       const ev = events[i];
-      console.log(`${i}番目のイベントの中身は`);
-      console.log(events[i]);
-      console.log(`ev.typeは`);
-      console.log(ev.type);
       switch (ev.type) {
         case "join":
           promises.push( 
@@ -63,12 +56,13 @@ exports.rikei_lineBot = function (req, res) {
     Promise.all(promises).then(console.log("pass")); 
    }
    
-   async function replyline(ev,destination) {
+async function replyline(ev, destination) {
+  let pro;
        try{
-        var pro =  await (await client.getProfile(ev.source.userId)).displayName;
+        pro =  await (await client.getProfile(ev.source.userId)).displayName;
        }catch(e){
         console.error(e);
-        var pro = "Couldn't get displayName";
+        pro = "Couldn't get displayName";
        }
     LineFriend.linefriendupdate(ev,destination,pro);//友だちDB書き込み
     LineBotDB.linebotcreate(ev,destination,pro);//DB書き込み
