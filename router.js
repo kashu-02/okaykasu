@@ -37,7 +37,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-      "script-src": ["'self'", "https://accaii.com/", "https://code.jquery.com/", "https://cdn.jsdelivr.net/", "https://stackpath.bootstrapcdn.com/", "https://kashu.dev"],
+      "script-src": ["'self'", "https://accaii.com/", "https://code.jquery.com/", "https://cdn.jsdelivr.net/", "https://stackpath.bootstrapcdn.com/", "https://kashu.dev/"],
       "frame-src": ["'self'", "https://docs.google.com/"],
       "img-src": ["'self'", "https://dl.dropboxusercontent.com", "data:"],
     },
